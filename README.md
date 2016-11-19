@@ -3,7 +3,7 @@ Copyright (C) 2016 - The CyanogenMod Project
 Device configuration for Xiaomi Mi 5
 ==============
 
-The Xiaomi Mi 5 (codenamed _"Gemini"_) is a high-end smartphone from Xiaomi.
+The Xiaomi Mi 5 (codenamed _"markw"_) is a high-end smartphone from Xiaomi.
 
 It was announced in February 2016, in three flavours. Release date was April 2016.
 

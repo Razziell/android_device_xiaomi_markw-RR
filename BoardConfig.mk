@@ -16,16 +16,16 @@
 
 BOARD_VENDOR := xiaomi
 
-DEVICE_PATH := device/xiaomi/gemini
+DEVICE_PATH := device/xiaomi/markw
 
-TARGET_SPECIFIC_HEADER_PATH := device/xiaomi/gemini/include
+TARGET_SPECIFIC_HEADER_PATH := device/xiaomi/markw/include
 
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := kryo
+TARGET_CPU_VARIANT := generic
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
@@ -33,15 +33,17 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
+TARGET_CPU_CORTEX_A53 := true
+
 ENABLE_CPUSETS := true
 
 TARGET_USES_64_BIT_BINDER := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := gemini
+TARGET_OTA_ASSERT_DEVICE := markw
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := msm8996
+TARGET_BOOTLOADER_BOARD_NAME := msm8953
 TARGET_NO_BOOTLOADER := true
 
 # Kernel
@@ -53,18 +55,18 @@ BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_CONFIG := cyanogenmod_gemini_defconfig
-TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8996
+TARGET_KERNEL_CONFIG := msm8953_perf_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8953
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
 # Platform
-TARGET_BOARD_PLATFORM := msm8996
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
+TARGET_BOARD_PLATFORM := msm8953
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno506
 
-USE_CLANG_PLATFORM_BUILD := true
+#USE_CLANG_PLATFORM_BUILD := true
 
 # Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/qcom/common
+#TARGET_RELEASETOOLS_EXTENSIONS := device/qcom/common
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
@@ -122,6 +124,7 @@ TARGET_LDPRELOAD := libNimsWrap.so
 BOARD_USES_QCNE := true
 
 # Display
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 TARGET_USES_C2D_COMPOSITION := true
@@ -138,17 +141,13 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 TARGET_HW_DISK_ENCRYPTION := true
 
 # Init
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
-
-# NFC
-BOARD_NFC_CHIPSET := pn548
-TARGET_USES_NQ_NFC := true
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
@@ -187,8 +186,8 @@ BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 USE_SENSOR_MULTI_HAL := true
 
 # Vendor init
-TARGET_INIT_VENDOR_LIB := libinit_gemini
-TARGET_RECOVERY_DEVICE_MODULES := libinit_gemini
+TARGET_INIT_VENDOR_LIB := libinit_markw
+TARGET_RECOVERY_DEVICE_MODULES := libinit_markw
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
@@ -205,4 +204,4 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
--include vendor/xiaomi/gemini/BoardConfigVendor.mk
+-include vendor/xiaomi/markw/BoardConfigVendor.mk

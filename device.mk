@@ -17,10 +17,10 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/xiaomi/gemini/gemini-vendor.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/markw/markw-vendor.mk)
 
 # System properties
--include $(LOCAL_PATH)/system_prop.mk
+#-include $(LOCAL_PATH)/system_prop.mk
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -135,10 +135,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
 
-# ConfigPanel
-PRODUCT_PACKAGES += \
-    ConfigPanel \
-
 # Display
 PRODUCT_PACKAGES += \
     copybit.msm8996 \
@@ -204,7 +200,7 @@ PRODUCT_COPY_FILES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.msm8996
+    lights.msm8953
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -258,7 +254,7 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8996
+    power.msm8953
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -276,7 +272,7 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    sensors.msm8996
+    sensors.msm8953
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf \
