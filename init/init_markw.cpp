@@ -115,13 +115,6 @@ void check_device()
 
 void vendor_load_properties()
 {
-    char platform[PROP_VALUE_MAX];
-    int rc;
-
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || strncmp(platform, ANDROID_TARGET, PROP_VALUE_MAX))
-        return;
-
     check_device();
 
     property_set("dalvik.vm.heapstartsize", "8m");
