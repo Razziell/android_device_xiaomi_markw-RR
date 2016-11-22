@@ -35,11 +35,11 @@ $(shell mkdir -p $(TARGET_OUT_ETC)/firmware; \
 	    $(TARGET_OUT_ETC)/firmware/msadp)
 
 # WiFi symlinks
-$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/qca_cld; \
+$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
     ln -sf /system/etc/wifi/WCNSS_qcom_cfg.ini \
-	    $(TARGET_OUT_ETC)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini; \
+	    $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_cfg.ini; \
     ln -sf /persist/wlan_mac.bin \
-	    $(TARGET_OUT_ETC)/firmware/wlan/qca_cld/wlan_mac.bin; \
+	    $(TARGET_OUT_ETC)/firmware/wlan/prima/wlan_mac.bin; \
     ln -sf /system/lib/modules/pronto/pronto_wlan.ko \
             $(TARGET_OUT)/lib/modules/wlan.ko)
 # END WiFi symlinks
