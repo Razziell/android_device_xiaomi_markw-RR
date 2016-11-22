@@ -40,6 +40,10 @@ $(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
 	    $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_cfg.ini; \
     ln -sf /persist/wlan_mac.bin \
 	    $(TARGET_OUT_ETC)/firmware/wlan/prima/wlan_mac.bin; \
+    ln -sf /persist/WCNSS_qcom_wlan_nv.bin \
+            $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin; \
+    ln -sf /persist/WCNSS_wlan_dictionary.dat \
+            $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_wlan_dictionary.dat; \
     ln -sf /system/lib/modules/pronto/pronto_wlan.ko \
             $(TARGET_OUT)/lib/modules/wlan.ko)
 # END WiFi symlinks
