@@ -104,22 +104,22 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
-    $(LOCAL_PATH)/audio/audio/audio_platform_info_extcodec.xml:system/etc/audio/audio_platform_info_extcodec.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths.xml:system/etc/audio/mixer_paths.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_mtp.xml:system/etc/audio/mixer_paths_mtp.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_qrd_sku3.xml:system/etc/audio/mixer_paths_qrd_sku3.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_qrd_skuh.xml:system/etc/audio/mixer_paths_qrd_skuh.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_qrd_skuhf.xml:system/etc/audio/mixer_paths_qrd_skuhf.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_qrd_skui.xml:system/etc/audio/mixer_paths_qrd_skui.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_qrd_skum.xml:system/etc/audio/mixer_paths_qrd_skum.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_qrd_skun.xml:system/etc/audio/mixer_paths_qrd_skun.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_skuk.xml:system/etc/audio/mixer_paths_skuk.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_wcd9306.xml:system/etc/audio/mixer_paths_wcd9306.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_wcd9326.xml:system/etc/audio/mixer_paths_wcd9326.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_wcd9330.xml:system/etc/audio/mixer_paths_wcd9330.xml \
-    $(LOCAL_PATH)/audio/audio/mixer_paths_wcd9335.xml:system/etc/audio/mixer_paths_wcd9335.xml \
-    $(LOCAL_PATH)/audio/audio/sound_trigger_mixer_paths_wcd9306.xml:system/etc/audio/sound_trigger_mixer_paths_wcd9306.xml \
-    $(LOCAL_PATH)/audio/audio/sound_trigger_mixer_paths_wcd9335.xml:system/etc/audio/sound_trigger_mixer_paths_wcd9335.xml
+    $(LOCAL_PATH)/audio/audio_platform_info_extcodec.xml:system/etc/audio_platform_info_extcodec.xml \
+    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_mtp.xml:system/etc/mixer_paths_mtp.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_qrd_sku3.xml:system/etc/mixer_paths_qrd_sku3.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_qrd_skuh.xml:system/etc/mixer_paths_qrd_skuh.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_qrd_skuhf.xml:system/etc/mixer_paths_qrd_skuhf.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_qrd_skui.xml:system/etc/mixer_paths_qrd_skui.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_qrd_skum.xml:system/etc/mixer_paths_qrd_skum.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_qrd_skun.xml:system/etc/mixer_paths_qrd_skun.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_skuk.xml:system/etc/mixer_paths_skuk.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_wcd9306.xml:system/etc/mixer_paths_wcd9306.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_wcd9326.xml:system/etc/mixer_paths_wcd9326.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_wcd9330.xml:system/etc/mixer_paths_wcd9330.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_wcd9335.xml:system/etc/mixer_paths_wcd9335.xml \
+    $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9306.xml:system/etc/sound_trigger_mixer_paths_wcd9306.xml \
+    $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9335.xml:system/etc/sound_trigger_mixer_paths_wcd9335.xml
 
 # Browser
 PRODUCT_PACKAGES += \
@@ -129,11 +129,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
-# Device config scripts
-PRODUCT_PACKAGES += \
-    init.leds.sh \
-    init.qcom.bt.sh
-
 # Device init scripts
 PRODUCT_PACKAGES += \
     fstab.qcom \
@@ -142,7 +137,16 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.target.rc \
     ueventd.qcom.rc \
-    init.qcom.sh
+    init.qcom.sh \
+    init.class_main.sh \
+    init.mdm.sh \
+    init.msm.usb.configfs.rc \
+    init.qcom.class_core.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.factory.rc \
+    init.qcom.sensors.sh \
+    init.qcom.syspart_fixup.sh \
+    init.qcom.usb.sh
 
 # CNE
 PRODUCT_PACKAGES += \
@@ -167,7 +171,6 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8953 \
     libcurl
 
 PRODUCT_COPY_FILES += \
@@ -266,7 +269,6 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
-    readmac \
     wpa_supplicant \
     wpa_supplicant.conf
 
