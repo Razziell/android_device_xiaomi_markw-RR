@@ -79,6 +79,8 @@ on boot
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
 
+    chmod 0660 /proc/gesture/onoff
+
     chmod 0660 /dev/ttyHS2
     chown bluetooth bluetooth /dev/ttyHS2
 
@@ -116,8 +118,8 @@ on boot
     #enable camera read sensors data
     setprop persist.camera.gyro.disable 0
     
-		#close pdaf focus circle qhq.wt
-		setprop persist.camera.stats.test 5
+    #close pdaf focus circle qhq.wt
+    setprop persist.camera.stats.test 5
 
     #open RNR wuguang.wt
     setprop persist.camera.feature.cac 1
@@ -125,7 +127,6 @@ on boot
 
     #Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
-
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
