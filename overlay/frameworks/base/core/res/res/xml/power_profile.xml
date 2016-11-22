@@ -114,6 +114,6 @@
     </array>
 
     <!-- This is the battery capacity in mAh -->
-    <item name="battery.capacity">3000</item>
+    <item name="battery.capacity">4000</item>
 
 </device>
