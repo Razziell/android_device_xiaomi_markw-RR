@@ -52,47 +52,9 @@
         <item>1500</item>
         <item>3000</item>
         <item>3500</item>
-        <item>4000</item>
+        <item>5000</item>
+	<item>7000</item>
     </integer-array>
-
-    <!-- Array of output values for LCD backlight corresponding to the LUX values
-         in the config_autoBrightnessLevels array.  This array should have size one greater
-         than the size of the config_autoBrightnessLevels array.
-         This must be overridden in platform specific overlays -->
-    <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>3</item>
-        <item>7</item>
-        <item>13</item>
-        <item>19</item>
-        <item>24</item>
-        <item>31</item>
-        <item>39</item>
-        <item>43</item>
-        <item>43</item>
-        <item>44</item>
-        <item>45</item>
-        <item>48</item>
-        <item>55</item>
-        <item>60</item>
-        <item>63</item>
-        <item>67</item>
-        <item>84</item>
-        <item>93</item>
-        <item>105</item>
-        <item>200</item>
-        <item>240</item>
-        <item>255</item>
-    </integer-array>
-
-    <!-- Array of output values for button backlight corresponding to the LUX values
-         in the config_autoBrightnessLevels array.  This array should have size one greater
-         than the size of the config_autoBrightnessLevels array.
-         The brightness values must be between 0 and 255 and be non-decreasing.
-         This must be overridden in platform specific overlays -->
-    <integer-array name="config_autoBrightnessButtonBacklightValues">
-    </integer-array>
-
-    <bool name="config_deviceHasVariableButtonBrightness">true</bool>
 
     <!-- Screen brightness used to dim the screen when the user activity
          timeout expires.  May be less than the minimum allowed brightness setting
