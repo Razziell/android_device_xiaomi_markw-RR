@@ -53,7 +53,7 @@
         <item>3000</item>
         <item>3500</item>
         <item>5000</item>
-	<item>7000</item>
+        <item>7000</item>
     </integer-array>
 
     <!-- Screen brightness used to dim the screen when the user activity
