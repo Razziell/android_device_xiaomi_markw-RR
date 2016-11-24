@@ -9,10 +9,27 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
-ril.subscription.types=NV,RUIM
+
 DEVICE_PROVISIONED=1
-#bug188936, wuwenting.wt, modify, 20160621 don't Start in cdma mode
-ro.telephony.default_network=20,20
+rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
+ril.subscription.types=NV,RUIM
+ro.telephony.default_network=22,22
+ro.telephony.default_cdma_sub=0
+ro.telephony.call_ring.multiple=false
+persist.data.qmi.adb_logmask=0
+persist.dbg.volte_avail_ovr=1
+persist.dbg.vt_avail_ovr=1
+persist.logd.size.radio=4M
+persist.net.doxlat=true
+persist.radio.apm_sim_not_pwdn=1
+persist.radio.force_on_dc=true
+persist.radio.rat_on=combine
+persist.radio.multisim.config=dsds
+persist.radio.custom_ecc=1
+persist.radio.sib16_support=1
+persist.radio.NO_STAPA=1
+persist.radio.VT_HYBRID_ENABLE=1
+telephony.lteOnCdmaDevice=1,1
 
 debug.sf.hw=0
 debug.egl.hw=0
@@ -75,11 +92,6 @@ ro.opengles.version=196609
 
 # System property for cabl
 ro.qualcomm.cabl=0
-
-#
-# System props for telephony
-# System prop to turn on CdmaLTEPhone always
-telephony.lteOnCdmaDevice=1
 
 #
 # System props for bluetooh
@@ -220,12 +232,6 @@ ro.build.display.wtid=SW_S88553AA1_V055_M21_MP_XM
 #force HAL1 for below packages
 camera.hal1.packagelist=com.skype.raider,com.google.android.talk
 
-#Enable FR27607-RIL to send ONLINE cmd in bootup
-persist.radio.poweron_opt=1
-
-#set dsds
-persist.radio.multisim.config=dsds
-
 #bug156417 zhaoqf_sh add for battery charging off if CALL_STATE_OFFHOOK
 persist.sys.chgdisabled=0
 
@@ -237,10 +243,6 @@ ro.ct.device.model=XMP-2016060
 #bug162797 zhangyajun.wt add for fingerprint fun
 ro.miui.support_fingerprint=true
 
-# hide internal OOS for 5s when modem is camping
-#bug187005, wuwenting.wt, add, 20160615
-persist.radio.ignore_dom_time=5
-
 # caofeng.wt add for lcd svi
 #ro.qualcomm.svi=1
 #ro.qcom.svi.sensortype=2
@@ -248,22 +250,15 @@ persist.radio.ignore_dom_time=5
 #config.svi.path=/system/etc/svi_configuration.xml
 av.debug.disable.pers.cache=true
 
-
-#bug173273, wuwenting.wt, add, 20160706, for ct sms
-persist.radio.force_on_dc=true
-
 persist.nfc.smartcard.config=SIM1,SIM2,eSE1
 persist.sys.mcd_config_file=/system/etc/mcd_default.conf
 ro.carrier=unknown
 ro.vendor.extension_library=libqti-perfd-client.so
-persist.radio.sib16_support=1
-persist.radio.custom_ecc=1
 ro.frp.pst=/dev/block/bootdevice/by-name/config
 ro.product.manufacturer=Xiaomi
 keyguard.no_require_sim=true
 ro.product.cuptsm=XIAOMI|ESE|02|01
 persist.power.useautobrightadj=true
-persist.radio.apm_sim_not_pwdn=1
 ro.sf.lcd_density=480
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
