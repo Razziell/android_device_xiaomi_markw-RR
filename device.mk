@@ -243,6 +243,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8953
 
+# QCAV
+PRODUCT_PACKAGES += \
+    qcmediaplayer \
+    libdashplayer \
+    ilibqcmediaplayer \
+    libextmedia_jni
+
 # QMI
 PRODUCT_PACKAGES += \
     dsi_config.xml \
