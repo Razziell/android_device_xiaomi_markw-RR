@@ -194,6 +194,11 @@ on boot
     # bond0 used by FST Manager
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
+    # Notification LED
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/blue/blink
+
     # Goodix Fingerprint
     chown system system /dev/goodix_fp
     chmod 0644 /dev/goodix_fp        
@@ -201,7 +206,6 @@ on boot
 
     setprop persist.sys.fp.vendor none
     start gx_fpd
-
 
 # msm specific files that need to be created on /data
 on post-fs-data
