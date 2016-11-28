@@ -6,9 +6,5 @@
  {
    "repository": "android_kernel_xiaomi_msm8953",
    "target_path": "kernel/xiaomi/msm8953"
- },
- {
-   "repository": "android_external_mm-dash",
-   "target_path": "external/mm-dash"
  }
 ]
