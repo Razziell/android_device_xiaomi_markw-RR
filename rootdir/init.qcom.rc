@@ -199,6 +199,9 @@ on boot
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/blue/blink
 
+	# IR
+	chown system system /sys/class/leds/infrared/transmit
+
     # Goodix Fingerprint
     chown system system /dev/goodix_fp
     chmod 0644 /dev/goodix_fp        
