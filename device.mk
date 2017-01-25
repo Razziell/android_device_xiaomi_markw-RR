@@ -132,6 +132,7 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    libshims_camera \
     Snap
 
 # Device init scripts
