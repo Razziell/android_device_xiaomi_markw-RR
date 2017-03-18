@@ -108,8 +108,8 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # CM Hardware
 BOARD_HARDWARE_CLASS += \
-    hardware/cyanogen/cmhw \
-    $(DEVICE_PATH)/cmhw
+    hardware/mokee/mkhw \
+    $(DEVICE_PATH)/mkhw
 TARGET_TAP_TO_WAKE_NODE := "/proc/gesture/onoff"
 
 # CNE and DPM
