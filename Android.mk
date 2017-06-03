@@ -43,9 +43,7 @@ $(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
     ln -sf /persist/WCNSS_qcom_wlan_nv.bin \
             $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin; \
     ln -sf /persist/WCNSS_wlan_dictionary.dat \
-            $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_wlan_dictionary.dat; \
-    ln -sf /system/lib/modules/pronto/pronto_wlan.ko \
-            $(TARGET_OUT)/lib/modules/wlan.ko)
+            $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_wlan_dictionary.dat;)
 # END WiFi symlinks
 
 # IMS lib symlink
