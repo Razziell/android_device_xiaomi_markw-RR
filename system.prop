@@ -95,6 +95,8 @@ ro.qualcomm.cabl=0
 
 #
 # System props for bluetooh
+qcom.bluetooth.soc=smd
+
 # System prop to turn on hfp client
 bluetooth.hfp.client=1
 
