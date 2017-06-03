@@ -176,6 +176,10 @@ PRODUCT_PACKAGES += \
     fingerprint.msm8953 \
     fingerprintd
 
+# Fs_config
+PRODUCT_PACKAGES += \
+    fs_config_files
+
 # GPS
 PRODUCT_PACKAGES += \
     libcurl
