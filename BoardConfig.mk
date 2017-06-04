@@ -135,6 +135,10 @@ TARGET_HW_DISK_ENCRYPTION := true
 # Filesystem
 TARGET_ANDROID_FILESYSTEM_CONFIG_H := $(DEVICE_PATH)/android_filesystem_config.h
 
+# GPS
+USE_DEVICE_SPECIFIC_GPS := true
+TARGET_NO_RPC := true
+
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
