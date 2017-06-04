@@ -783,7 +783,7 @@ int IPACM_Lan::handle_del_ipv6_addr(ipacm_event_data_all *data)
 {
 	uint32_t tx_index;
 	uint32_t rt_hdl;
-	int num_v6, clnt_indx;
+	int num_v6 =0, clnt_indx;
 
 	clnt_indx = get_eth_client_index(data->mac_addr);
 	if (clnt_indx == IPACM_INVALID_INDEX)
@@ -951,6 +951,9 @@ int IPACM_Lan::handle_addr_evt(ipacm_event_data_addr *data)
 		}
 	}
 #endif /* defined(FEATURE_IPA_ANDROID)*/
+
+	/* Update the IP Type. */
+	config_ip_type(data->iptype);
 
 	if (data->iptype == IPA_IP_v4)
 	{
@@ -2599,54 +2602,6 @@ int IPACM_Lan::handle_down_evt()
 	}
 
 	IPACMDBG_H("Finished delete default iface ipv6 rules \n ");
-	/* clean eth-client header, routing rules */
-	IPACMDBG_H("left %d eth clients need to be deleted \n ", num_eth_client);
-	for (i = 0; i < num_eth_client; i++)
-	{
-			/* First reset nat rules and then route rules */
-			if(get_client_memptr(eth_client, i)->ipv4_set == true)
-			{
-				IPACMDBG_H("Clean Nat Rules for ipv4:0x%x\n", get_client_memptr(eth_client, i)->v4_addr);
-				CtList->HandleNeighIpAddrDelEvt(get_client_memptr(eth_client, i)->v4_addr);
-			}
-
-			if (delete_eth_rtrules(i, IPA_IP_v4))
-			{
-				IPACMERR("unbale to delete ecm-client v4 route rules for index %d\n", i);
-				res = IPACM_FAILURE;
-				goto fail;
-			}
-
-			if (delete_eth_rtrules(i, IPA_IP_v6))
-			{
-				IPACMERR("unbale to delete ecm-client v6 route rules for index %d\n", i);
-				res = IPACM_FAILURE;
-				goto fail;
-			}
-
-			IPACMDBG_H("Delete %d client header\n", num_eth_client);
-
-
-			if(get_client_memptr(eth_client, i)->ipv4_header_set == true)
-			{
-				if (m_header.DeleteHeaderHdl(get_client_memptr(eth_client, i)->hdr_hdl_v4)
-					== false)
-				{
-					res = IPACM_FAILURE;
-					goto fail;
-				}
-			}
-
-			if(get_client_memptr(eth_client, i)->ipv6_header_set == true)
-			{
-			if (m_header.DeleteHeaderHdl(get_client_memptr(eth_client, i)->hdr_hdl_v6)
-					== false)
-			{
-				res = IPACM_FAILURE;
-				goto fail;
-			}
-			}
-	} /* end of for loop */
 
 	/* free the edm clients cache */
 	IPACMDBG_H("Free ecm clients cache\n");
@@ -2657,11 +2612,6 @@ int IPACM_Lan::handle_down_evt()
 	{
 		IPACMDBG_H("depend Got pipe %d rm index : %d \n", tx_prop->tx[0].dst_pipe, IPACM_Iface::ipacmcfg->ipa_client_rm_map_tbl[tx_prop->tx[0].dst_pipe]);
 		IPACM_Iface::ipacmcfg->DelRmDepend(IPACM_Iface::ipacmcfg->ipa_client_rm_map_tbl[tx_prop->tx[0].dst_pipe]);
-	}
-	/* check software routing fl rule hdl */
-	if (softwarerouting_act == true && rx_prop != NULL)
-	{
-		handle_software_routing_disable();
 	}
 
 	eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_DOWN, IPA_IP_MAX, NULL);
@@ -2685,6 +2635,56 @@ int IPACM_Lan::handle_down_evt()
 	}
 #endif /* defined(FEATURE_IPA_ANDROID)*/
 fail:
+	/* clean eth-client header, routing rules */
+	IPACMDBG_H("left %d eth clients need to be deleted \n ", num_eth_client);
+	for (i = 0; i < num_eth_client; i++)
+	{
+		/* First reset nat rules and then route rules */
+		if(get_client_memptr(eth_client, i)->ipv4_set == true)
+		{
+			IPACMDBG_H("Clean Nat Rules for ipv4:0x%x\n", get_client_memptr(eth_client, i)->v4_addr);
+			CtList->HandleNeighIpAddrDelEvt(get_client_memptr(eth_client, i)->v4_addr);
+		}
+
+		if (delete_eth_rtrules(i, IPA_IP_v4))
+		{
+			IPACMERR("unbale to delete ecm-client v4 route rules for index %d\n", i);
+			res = IPACM_FAILURE;
+		}
+
+		if (delete_eth_rtrules(i, IPA_IP_v6))
+		{
+			IPACMERR("unbale to delete ecm-client v6 route rules for index %d\n", i);
+			res = IPACM_FAILURE;
+		}
+
+		IPACMDBG_H("Delete %d client header\n", num_eth_client);
+
+		if(get_client_memptr(eth_client, i)->ipv4_header_set == true)
+		{
+			if (m_header.DeleteHeaderHdl(get_client_memptr(eth_client, i)->hdr_hdl_v4)
+				== false)
+			{
+				res = IPACM_FAILURE;
+			}
+		}
+
+		if(get_client_memptr(eth_client, i)->ipv6_header_set == true)
+		{
+			if (m_header.DeleteHeaderHdl(get_client_memptr(eth_client, i)->hdr_hdl_v6)
+					== false)
+			{
+				res = IPACM_FAILURE;
+			}
+		}
+	} /* end of for loop */
+
+	/* check software routing fl rule hdl */
+	if (softwarerouting_act == true && rx_prop != NULL)
+	{
+		handle_software_routing_disable();
+	}
+
 	if (odu_route_rule_v4_hdl != NULL)
 	{
 		free(odu_route_rule_v4_hdl);
@@ -3484,7 +3484,7 @@ int IPACM_Lan::install_ipv6_prefix_flt_rule(uint32_t* prefix)
 		flt_rule_entry.status = -1;
 		flt_rule_entry.rule.action = IPA_PASS_TO_EXCEPTION;
 #ifdef FEATURE_IPA_V3
-		flt_rule_entry.rule.hashable = false;
+		flt_rule_entry.rule.hashable = true;
 #endif
 		memcpy(&flt_rule_entry.rule.attrib, &rx_prop->rx[0].attrib, sizeof(flt_rule_entry.rule.attrib));
 		flt_rule_entry.rule.attrib.attrib_mask |= IPA_FLT_DST_ADDR;
@@ -3897,6 +3897,12 @@ int IPACM_Lan::eth_bridge_add_hdr_proc_ctx(ipa_hdr_l2_type peer_l2_hdr_type, uin
 	uint32_t hdr_template;
 	ipa_ioc_add_hdr_proc_ctx* pHeaderProcTable = NULL;
 
+	if(tx_prop == NULL)
+	{
+		IPACMERR("No tx prop.\n");
+		return IPACM_FAILURE;
+	}
+
 	len = sizeof(struct ipa_ioc_add_hdr_proc_ctx) + sizeof(struct ipa_hdr_proc_ctx_add);
 	pHeaderProcTable = (ipa_ioc_add_hdr_proc_ctx*)malloc(len);
 	if(pHeaderProcTable == NULL)
@@ -4059,7 +4065,8 @@ int IPACM_Lan::eth_bridge_modify_rt_rule(uint8_t *mac, uint32_t hdr_proc_ctx_hdl
 	{
 		if (tx_prop->tx[index].ip == iptype)
 		{
-			if (rt_rule->num_rules >= rt_rule_count)
+			if (rt_rule->num_rules >= rt_rule_count ||
+				rt_rule->num_rules >= MAX_NUM_PROP)
 			{
 				IPACMERR("Number of routing rules exceeds limit.\n");
 				res = IPACM_FAILURE;
@@ -4160,6 +4167,7 @@ int IPACM_Lan::eth_bridge_add_flt_rule(uint8_t *mac, uint32_t rt_tbl_hdl, ipa_ip
 	flt_rule_entry.rule.action = IPA_PASS_TO_ROUTING;
 	flt_rule_entry.rule.eq_attrib_type = 0;
 	flt_rule_entry.rule.rt_tbl_hdl = rt_tbl_hdl;
+	flt_rule_entry.rule.hashable = true;
 
 	memcpy(&flt_rule_entry.rule.attrib, &rx_prop->rx[0].attrib, sizeof(flt_rule_entry.rule.attrib));
 	if(tx_prop->tx[0].hdr_l2_type == IPA_HDR_L2_ETHERNET_II)
