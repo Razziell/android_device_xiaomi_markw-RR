@@ -55,7 +55,7 @@ log -t BOOT -p i "MSM target '$1', SoC '$soc_hwplatform', HwID '$soc_hwid', SoC 
 function set_density_by_fb() {
     #put default density based on width
     if [ -z $fb_width ]; then
-        setprop ro.sf.lcd_density 320
+        setprop ro.sf.lcd_density 480
     else
         if [ $fb_width -ge 1080 ]; then
            setprop ro.sf.lcd_density 480
@@ -194,8 +194,12 @@ case "$target" in
                 setprop ro.sf.lcd_density 240
                 setprop qemu.hw.mainkeys 0
                 ;;
+            "SBC")
+                setprop ro.sf.lcd_density 240
+                setprop qemu.hw.mainkeys 0
+                ;;
             *)
-                setprop ro.sf.lcd_density 480
+                setprop ro.sf.lcd_density 560
                 ;;
         esac
         ;;
@@ -208,8 +212,26 @@ case "$target" in
             294|295|296|297|298|313)
                 setprop ro.opengles.version 196609
                 ;;
+            303|307|308|309|320)
+                # Vulkan is not supported for 8917 & 8920 variants
+                setprop ro.opengles.version 196608
+                setprop persist.graphics.vulkan.disable true
+                ;;
             *)
                 setprop ro.opengles.version 196608
+                ;;
+        esac
+        ;;
+    "msmcobalt")
+        case "$soc_hwplatform" in
+            *)
+                setprop ro.sf.lcd_density 560
+                if [ ! -e /dev/kgsl-3d0 ]; then
+                    setprop persist.sys.force_sw_gles 1
+                    setprop sdm.idle_time 0
+                else
+                    setprop persist.sys.force_sw_gles 0
+                fi
                 ;;
         esac
         ;;
@@ -243,6 +265,8 @@ function setHDMIPermission() {
    set_perms $file/video_mode system.graphics 0664
    set_perms $file/format_3d system.graphics 0664
    set_perms $file/s3d_mode system.graphics 0664
+   set_perms $file/dynamic_fps system.graphics 0664
+   set_perms $file/msm_fb_dfps_mode system.graphics 0664
    set_perms $file/cec/enable system.graphics 0664
    set_perms $file/cec/logical_addr system.graphics 0664
    set_perms $file/cec/rd_msg system.graphics 0664
@@ -253,7 +277,7 @@ function setHDMIPermission() {
 }
 
 # check for HDMI connection
-for fb_cnt in 0 1 2
+for fb_cnt in 0 1 2 3
 do
     file=/sys/class/graphics/fb$fb_cnt/msm_fb_panel_info
     if [ -f "$file" ]
@@ -297,11 +321,30 @@ then
         set_perms $file/msm_cmd_autorefresh_en system.graphics 0664
 fi
 
+# set lineptr permissions for all displays
+for fb_cnt in 0 1 2 3
+do
+    file=/sys/class/graphics/fb$fb_cnt/lineptr_value
+    if [ -f "$file" ]; then
+        set_perms $file system.graphics 0664
+    fi
+done
+
 boot_reason=`cat /proc/sys/kernel/boot_reason`
 reboot_reason=`getprop ro.boot.alarmboot`
+power_off_alarm_file=`cat /persist/alarm/powerOffAlarmSet`
 if [ "$boot_reason" = "3" ] || [ "$reboot_reason" = "true" ]; then
-    setprop ro.alarm_boot true
-    setprop debug.sf.nobootanimation 1
+    if [ "$power_off_alarm_file" = "1" ]
+    then
+        setprop ro.alarm_boot true
+        setprop debug.sf.nobootanimation 1
+    fi
 else
     setprop ro.alarm_boot false
+fi
+
+# copy GPU frequencies to system property
+if [ -f /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies ]; then
+    gpu_freq=`cat /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies` 2> /dev/null
+    setprop ro.gpu.available_frequencies "$gpu_freq"
 fi

@@ -211,6 +211,9 @@
 /sys/devices/soc/78b7000.i2c/i2c-3/3-0038/input/input*    secure_touch_enable  0660   system  drmrpc
 /sys/devices/soc/78b7000.i2c/i2c-3/3-004b/input/input*    secure_touch         0440   system  drmrpc
 /sys/devices/soc/78b7000.i2c/i2c-3/3-004b/input/input*    secure_touch_enable  0660   system  drmrpc
+# laser sensor access
+/sys/devices/virtual/input/input*                   enable_ps_sensor 0660  system   system
+/sys/devices/virtual/input/input*                   set_delay_ms     0660  system   system
 
 # vm_bms
 /dev/vm_bms               0660   system     system
@@ -250,6 +253,7 @@
 
 # Add device block for FRP
 /dev/block/platform/soc/7824900.sdhci/by-name/config    0600   system     system
+/dev/block/platform/soc/7464900.sdhci/by-name/frp       0600   system     system
 
 # fpc Fingerprint
 /sys/devices/soc/soc:fpc1020		hw_reset			0220   system     system

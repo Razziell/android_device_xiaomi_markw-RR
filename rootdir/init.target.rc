@@ -35,16 +35,13 @@ on early-init
     symlink /data/tombstones /tombstones
     mkdir /dsp 0771 media media
 
-on post-fs
-    export LD_PRELOAD libNimsWrap.so
-
 on init
     mkdir /cust 0771 system system
 on fs
     wait /dev/block/bootdevice
 
     mount_all fstab.qcom
-    write /proc/sys/vm/swappiness 100
+#    write /proc/sys/vm/swappiness 100
 
     # Keeping following partitions outside fstab file. As user may not have
     # these partition flashed on the device. Failure to mount any partition in fstab file
@@ -56,11 +53,11 @@ on fs
     wait /dev/block/bootdevice/by-name/persist
     mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
     mkdir /persist/data 0700 system system
+    mkdir /persist/bms 0700 root system
     restorecon_recursive /persist
 
     wait /dev/block/bootdevice/by-name/dsp
     mount ext4 /dev/block/bootdevice/by-name/dsp /dsp ro nosuid nodev barrier=1
-    #restorecon_recursive /dsp
 
     wait /dev/block/bootdevice/by-name/modem
     mount vfat /dev/block/bootdevice/by-name/modem /firmware ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
@@ -152,7 +149,7 @@ service thermal-engine /system/vendor/bin/thermal-engine
    group root
 
 service time_daemon /system/bin/time_daemon
-   class late_start
+   class main
    user root
    group root
 
@@ -206,7 +203,7 @@ service ims_rtp_daemon /system/bin/ims_rtp_daemon
 service imscmservice /system/bin/imscmservice
    class main
    user system
-   group radio net_raw diag diag log
+   group radio diag inet log
    disabled
 
 on property:sys.ims.DATA_DAEMON_STATUS=1
@@ -311,9 +308,10 @@ on boot
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/update_fw 1
 
-    # update foreground cpuset now that processors are up
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/foreground/boost/cpus 4-7
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/top-app/boost/cpus 4-7
+    write /dev/cpuset/foreground/cpus 0-6
+    write /dev/cpuset/foreground/boost/cpus 0-6
     write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-3
 
