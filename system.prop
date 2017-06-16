@@ -260,6 +260,3 @@ sys.haptic.up.strong=0,30,25,57
 sys.haptic.tap.weak=0,15,30,40
 sys.haptic.tap.normal=0,24,32,48
 sys.haptic.tap.strong=0,33,34,56
-
-# Maintainer
-ro.mk.maintainer=wood
