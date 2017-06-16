@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.mokee.hardware;
+package org.cyanogen.hardware;
 
-import org.mokee.internal.util.FileUtils;
+import org.cyanogen.internal.util.FileUtils;
 
 /*
  * Disable capacitive keys
