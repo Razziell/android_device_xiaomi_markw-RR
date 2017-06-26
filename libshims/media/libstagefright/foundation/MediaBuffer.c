@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-/* TODO: Actually provide implementations for these functions! */
+/* TODO: Actually provide implementations for these function! */
 
 void _ZNK7android11MediaBuffer8refcountEv() {}

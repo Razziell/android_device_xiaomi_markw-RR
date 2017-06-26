@@ -30,3 +30,6 @@ key 114   VOLUME_DOWN
 key 102   HOME	          WAKE
 key 528   FOCUS
 key 766   CAMERA
+
+key 250   VOLUME_DOWN
+key 251   VOLUME_UP

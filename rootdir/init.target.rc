@@ -77,6 +77,8 @@ on post-fs
     mount ext4 /dev/block/bootdevice/by-name/oem /oem ro nosuid nodev barrier=1
 
 on post-fs-data
+
+    mkdir /data/goodix 0770 system system
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
@@ -86,6 +88,45 @@ on post-fs-data
     mkdir /persist/data/tz 0700 system system
     mkdir /data/misc/dts 0770 media audio
     mkdir /data/misc/hbtp 0750 system system
+
+on property:persist.sys.fp.goodix=1
+    start gx_fpd
+
+on property:persist.sys.fp.goodix=0
+stop gx_fpd
+
+service gx_fpd /system/bin/gx_fpd
+    class late_start
+    user system
+    group system
+    disabled
+writepid /dev/cpuset/system-background/tasks
+
+# Vibrator
+    chown system system /sys/class/timed_output/vibrator/vtg_level
+    chown system system /sys/class/timed_output/vibrator/vtg_max
+    chown system system /sys/class/timed_output/vibrator/vtg_min
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_level
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_max
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_min
+
+# Advanced color control for Qualcomm
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcalkcalkcal
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcalkcalkcal_min
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcalkcalkcal_enable
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcalkcalkcal_invert
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcalkcalkcal_sat
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcalkcalkcal_hue
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcalkcalkcal_val
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcalkcalkcal_cont
+    chmod 0644 /sys/devices/platform/kcal_ctrl.0/kcalkcal
+    chmod 0644 /sys/devices/platform/kcal_ctrl.0/kcalkcal_min
+    chmod 0644 /sys/devices/platform/kcal_ctrl.0/kcalkcal_enable
+    chmod 0644 /sys/devices/platform/kcal_ctrl.0/kcalkcal_invert
+    chmod 0644 /sys/devices/platform/kcal_ctrl.0/kcalkcal_sat
+    chmod 0644 /sys/devices/platform/kcal_ctrl.0/kcalkcal_hue
+    chmod 0644 /sys/devices/platform/kcal_ctrl.0/kcalkcal_val
+chmod 0644 /sys/devices/platform/kcal_ctrl.0/kcalkcal_cont
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
@@ -161,6 +202,11 @@ service audiod /system/bin/audiod
 on boot
     start rmt_storage
     insmod /system/lib/modules/adsprpc.ko
+
+# Goodix Fingerprint
+    chown system system /dev/goodix_fp
+    chmod 0644 /dev/goodix_fp
+
 # access permission for secure touch
     chmod 0660 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
     chmod 0440 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
@@ -170,6 +216,16 @@ on boot
     chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
     chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
     chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
+
+    # Sensors
+    chmod 0775 /persist/sensors
+    chmod 0664 /persist/sensors/sensors_settings
+    chown system root /persist/sensors/sensors_settings
+    chmod 0664 /persist/sensors/gyro_sensitity_cal
+    chown system root /persist/sensors/gyro_sensitity_cal
+    mkdir /data/misc/sensors
+    chmod 0775 /data/misc/sensors
+    start sensors
 
 service wcnss-service /system/bin/wcnss_service
     class main
