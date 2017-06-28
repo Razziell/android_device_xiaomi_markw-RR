@@ -1,6 +1,6 @@
 /*
-   Copyright (c) 2015-2017 The Linux Foundation. All rights reserved.
-   Copyright (C) 2017 The LineageOS Project.
+   Copyright (c) 2015, The Linux Foundation. All rights reserved.
+   Copyright (C) 2016 The CyanogenMod Project.
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -26,71 +26,84 @@
    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 
-#include <cstdlib>
-#include <unistd.h>				   
-#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/sysinfo.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
 #include "log.h"
 #include "util.h"
 
-static int read_file2(const char *fname, char *data, int max_size)
+char const *heapminfree;
+char const *heapmaxfree;
+
+static void init_alarm_boot_properties()
 {
-    int fd, rc;
+    int boot_reason;
+    FILE *fp;
 
-    if (max_size < 1)
-        return 0;
+    fp = fopen("/proc/sys/kernel/boot_reason", "r");
+    fscanf(fp, "%d", &boot_reason);
+    fclose(fp);
 
-    fd = open(fname, O_RDONLY);
-    if (fd < 0) {
-        ERROR("failed to open '%s'\n", fname);
-        return 0;
-    }
-
-    rc = read(fd, data, max_size - 1);
-    if ((rc > 0) && (rc < max_size))
-        data[rc] = '\0';
-    else
-        data[0] = '\0';
-    close(fd);
-
-    return 1;
+    /*
+     * Setup ro.alarm_boot value to true when it is RTC triggered boot up
+     * For existing PMIC chips, the following mapping applies
+     * for the value of boot_reason:
+     *
+     * 0 -> unknown
+     * 1 -> hard reset
+     * 2 -> sudden momentary power loss (SMPL)
+     * 3 -> real time clock (RTC)
+     * 4 -> DC charger inserted
+     * 5 -> USB charger inserted
+     * 6 -> PON1 pin toggled (for secondary PMICs)
+     * 7 -> CBLPWR_N pin toggled (for external power supply)
+     * 8 -> KPDPWR_N pin toggled (power key pressed)
+     */
+     if (boot_reason == 3) {
+        property_set("ro.alarm_boot", "true");
+     } else {
+        property_set("ro.alarm_boot", "false");
+     }
 }
 
-void init_alarm_boot_properties()
+void check_device()
 {
-    char const *alarm_file = "/proc/sys/kernel/boot_reason";
-    char buf[64];
+    struct sysinfo sys;
 
-    if(read_file2(alarm_file, buf, sizeof(buf))) {
-        /*
-         * Setup ro.alarm_boot value to true when it is RTC triggered boot up
-         * For existing PMIC chips, the following mapping applies
-         * for the value of boot_reason:
-         *
-         * 0 -> unknown
-         * 1 -> hard reset
-         * 2 -> sudden momentary power loss (SMPL)
-         * 3 -> real time clock (RTC)
-         * 4 -> DC charger inserted
-         * 5 -> USB charger insertd
-         * 6 -> PON1 pin toggled (for secondary PMICs)
-         * 7 -> CBLPWR_N pin toggled (for external power supply)
-         * 8 -> KPDPWR_N pin toggled (power key pressed)
-         */
-        if(buf[0] == '3') {
-            property_set("ro.alarm_boot", "true");
-            property_set("debug.sf.nobootanimation", "1");
-        }
-        else
-            property_set("ro.alarm_boot", "false");
+    sysinfo(&sys);
+
+    if (sys.totalram > 3072ull * 1024 * 1024) {
+        // from - phone-xxxhdpi-4096-dalvik-heap.mk
+        heapminfree = "4m";
+        heapmaxfree = "16m";
+    } else {
+        // from - phone-xxhdpi-3072-dalvik-heap.mk
+        heapminfree = "512k";
+        heapmaxfree = "8m";
     }
 }
 
 void vendor_load_properties()
 {
+    std::string platform;
+
+    platform = property_get("ro.board.platform");
+    if (platform != ANDROID_TARGET)
+        return;
+
+    check_device();
+
+    property_set("dalvik.vm.heapstartsize", "8m");
+    property_set("dalvik.vm.heapgrowthlimit", "384m");
+    property_set("dalvik.vm.heapsize", "1024m");
+    property_set("dalvik.vm.heaptargetutilization", "0.75");
+    property_set("dalvik.vm.heapminfree", heapminfree);
+    property_set("dalvik.vm.heapmaxfree", heapmaxfree);
+
     init_alarm_boot_properties();
 }

@@ -153,7 +153,9 @@ PRODUCT_PACKAGES += \
     init.qcom.sensors.sh \
     init.qcom.syspart_fixup.sh \
     init.qcom.post_boot.sh \
-    init.qcom.usb.sh
+    init.qcom.usb.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.factory.rc
 
 # CNE
 PRODUCT_PACKAGES += \
@@ -172,7 +174,7 @@ PRODUCT_PACKAGES += \
     XiaomiDoze
 
 # Display Livedisplay
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     libjni_livedisplay
 
 # DPM
@@ -191,9 +193,9 @@ PRODUCT_PACKAGES += \
     libebtc
 
 # Fingerprint
-#PRODUCT_PACKAGES += \
-#     fingerprint.msm8953
-#    fingerprintd \
+PRODUCT_PACKAGES += \
+     fingerprint.msm8953 \
+     fingerprintd
     
 
 # Fs_config
