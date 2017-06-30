@@ -32,7 +32,6 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>1</item>        <!-- pitch black -->
         <item>5</item>
         <item>9</item>
         <item>14</item>
@@ -53,9 +52,8 @@
          in the config_autoBrightnessLevels array.  This array should have size one greater
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
-    <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>7</item>
-        <item>8</item>
+    <integer-array name="config_autoBrightnessLcdBacklightValues">        
+        <item>5</item>
         <item>10</item>
         <item>12</item>
         <item>17</item>
@@ -75,11 +73,11 @@
     <!-- Screen brightness used to dim the screen when the user activity
          timeout expires.  May be less than the minimum allowed brightness setting
          that can be set by the user. -->
-    <integer name="config_screenBrightnessDim">6</integer>
+    <integer name="config_screenBrightnessDim">10</integer>
 
     <!-- Default screen brightness setting.
          Must be in the range specified by minimum and maximum. -->
-    <integer name="config_screenBrightnessSettingDefault">53</integer>
+    <integer name="config_screenBrightnessSettingDefault">90</integer>
 
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->

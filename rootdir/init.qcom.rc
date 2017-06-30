@@ -957,18 +957,6 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     disabled
     oneshot
 
-service wifi-sdio-on /system/bin/sh /system/etc/init.qcom.sdio.sh
-    class late_start
-    group wifi inet
-    disabled
-    oneshot
-
-service wifi-crda /system/bin/sh /system/etc/init.crda.sh
-   class late_start
-   user root
-   disabled
-   oneshot
-
 on property:sys.boot_completed=1
     start qcom-post-boot
     start qti-testscripts
@@ -1026,12 +1014,6 @@ service ril-daemon3 /system/bin/rild -c 3
     user root
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log
-
-service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
-    class late_start
-    user root
-    disabled
-    oneshot
 
 service usb_uicc_daemon /system/bin/usb_uicc_client
     class main
@@ -1211,7 +1193,7 @@ service poweroffhandler /system/bin/poweroffhandler
     oneshot
 
 service fingerprintd /system/bin/fingerprintd
-    class late_start
+    class core
     socket fpce stream 0666 system system
     user  system
     group system sdcard_rw
@@ -1231,3 +1213,4 @@ on property:persist.sys.fp.vendor=switchf
 
 on property:persist.sys.fp.onstart=1
    start fingerprintd 
+

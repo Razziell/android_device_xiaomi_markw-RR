@@ -19,6 +19,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/xiaomi/markw/markw-vendor.mk)
 
+# Put ru_RU first in the list, so make it default.
+PRODUCT_LOCALES := ru_RU
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -328,4 +331,4 @@ PRODUCT_COPY_FILES += \
 
 # default.prop
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp
