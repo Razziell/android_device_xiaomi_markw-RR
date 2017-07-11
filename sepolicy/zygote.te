@@ -1,0 +1,2 @@
+allow zygote system_server:binder { call transfer };
+allow zygote activity_service:service_manager find;

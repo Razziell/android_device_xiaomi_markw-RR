@@ -1,0 +1,4 @@
+type dpmservice_app, domain;
+app_domain(dpmservice_app)
+allow dpmservice_app untrusted_app:file { read getattr };
+allow dpmservice_app platform_app:file { read getattr };

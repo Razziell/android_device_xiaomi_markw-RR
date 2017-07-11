@@ -1,0 +1,2 @@
+allow sudaemon power_service:service_manager find;
+allow sudaemon input_service:service_manager find;
