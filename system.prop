@@ -114,6 +114,7 @@ av.debug.disable.pers.cache=1
 media.aac_51_output_enabled=true
 media.msm8956hw=0
 media.stagefright.audio.sink=280
+media.stagefright.legacyencoder=true
 
 mm.enable.qcom_parser=1048575
 mm.enable.smoothstreaming=true
@@ -175,6 +176,9 @@ persist.data.qmi.adb_logmask=0
 
 # Service Restart
 ro.am.reschedule_service=true
+
+# Tcp
+net.tcp.2g_init_rwnd=10
 
 # Time
 persist.timed.enable=true
