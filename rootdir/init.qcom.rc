@@ -139,7 +139,7 @@ on boot
     setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
 
 
-    setprop ro.telephony.call_ring.multiple false
+    setprop ro.telephony.call_ring.multiple true
 
     #enable camera read sensors data
     setprop persist.camera.gyro.disable 0
@@ -158,19 +158,6 @@ on boot
 
     #For bridgemgr daemon to inform the USB driver of the correct transport
     chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
-
-#   Define TCP buffer sizes for various networks
-#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4096,87380,524288,4096,16384,110208
-    setprop net.tcp.buffersize.lte     2097152,4194304,8388608,262144,524288,1048576
-    setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
-    setprop net.tcp.buffersize.hspa    4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hsupa   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hsdpa   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hspap   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
-    setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
-    setprop net.tcp.buffersize.evdo    4094,87380,524288,4096,16384,262144
 
     setprop net.tcp.2g_init_rwnd 10
 
@@ -235,7 +222,7 @@ on boot
     chown system system /sys/class/leds/infrared/brightness
 
     # Goodix Fingerprint
-    chown system system  /dev/goodix_fp
+    chown system system /dev/goodix_fp
     chmod 0644 /dev/goodix_fp      
     chmod 0777 /system/bin/gx_fpd    
 
@@ -434,11 +421,6 @@ service iop /system/bin/iop
     disabled
     socket iop seqpacket 0666 root system
 
-#service qcomsysd /system/bin/qcom-system-daemon
-#    class main
-#    user root
-#    group root qcom_diag
-
 service ssr_setup /system/bin/ssr_setup
     oneshot
     disabled
@@ -536,7 +518,6 @@ on property:vold.decrypt=trigger_restart_framework
     start config_bt_addr
     start config_bluetooth
     start wcnss-service
-    start cnss_diag
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
@@ -598,11 +579,6 @@ service config_bt_addr /system/bin/btnvtool -O
     group bluetooth radio
     oneshot
 
-service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
-    class core
-    user root
-    oneshot
-
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class late_start
     user bluetooth
@@ -615,13 +591,6 @@ on property:bluetooth.hciattach=true
 
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
-
-service hciattach_ath3k /system/bin/sh /system/etc/init.ath3k.bt.sh
-     class late_start
-     user bluetooth
-     group system bluetooth net_bt_admin misc
-     disabled
-     oneshot
 
 service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
     class late_start
@@ -725,13 +694,6 @@ on property:ro.data.large_tcp_window_size=true
 on property:sys.sysctl.tcp_adv_win_scale=*
     write /proc/sys/net/ipv4/tcp_adv_win_scale ${sys.sysctl.tcp_adv_win_scale}
 
-service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin inet net_admin net_raw
-    disabled
-    oneshot
-
 service amp_init /system/bin/amploader -i
     class late_start
     user root
@@ -831,10 +793,6 @@ service dhcpcd_p2p /system/bin/dhcpcd -ABKLG
     disabled
     oneshot
 
-service dhcpcd_wigig0 /system/bin/dhcpcd -ABKLG
-    class late_start
-    disabled
-    oneshot
 service iprenew_wlan0 /system/bin/dhcpcd -n
     class late_start
     disabled
@@ -846,11 +804,6 @@ service iprenew_bond0 /system/bin/dhcpcd -n
     oneshot
 
 service iprenew_p2p /system/bin/dhcpcd -n
-    class late_start
-    disabled
-    oneshot
-
-service iprenew_wigig0 /system/bin/dhcpcd -n
     class late_start
     disabled
     oneshot
@@ -877,19 +830,8 @@ service wifi_ftmd /system/bin/wifi_ftmd
 on property:wifi.ftmd.load=true
 #    insmod /system/lib/modules/pronto/pronto_wlan.ko con_mode=5
 
-service cnss_diag /system/bin/cnss_diag -q -f
-    class main
-    user system
-    group system wifi inet net_admin sdcard_rw media_rw diag
-    oneshot
-
 service cnss-daemon /system/bin/cnss-daemon -n -l
     class late_start
-#    user system
-#    group system inet net_admin wifi
-
-#on property:sys.shutdown.requested=*
-#    stop cnss-daemon
 
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
@@ -1000,15 +942,6 @@ service ril-daemon2 /system/bin/rild -c 2
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user root
-    disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log
-
-service ril-daemon3 /system/bin/rild -c 3
-    class main
-    socket rild3 stream 660 root radio
-    socket rild-debug3 stream 660 radio system
-    user root
-    disabled
     group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log
 
 service usb_uicc_daemon /system/bin/usb_uicc_client
@@ -1208,5 +1141,5 @@ on property:persist.sys.fp.vendor=switchf
     start fingerprintd  
 
 on property:persist.sys.fp.onstart=1
-   start fingerprintd 
+   start fingerprintd
 

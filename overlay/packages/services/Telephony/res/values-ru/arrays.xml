@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2007 The Android Open Source Project
+<!--
+     Copyright (C) 2014 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,14 +14,13 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-    <string-array name="preferred_network_mode_choices" translatable="false">
+    <!--String arrays for World preferred netwrok modes -->
+    <string-array name="preferred_network_mode_choices_world_mode">
         <item>@string/preferred_network_mode_lte_wcdma_choice</item>
         <item>@string/preferred_network_mode_lte_choice</item>
         <item>@string/preferred_network_mode_gsm_wcdma_lte_choice</item>
-        <item>@string/preferred_network_mode_cdma_lte_evdo_choice</item>
+	<item>@string/preferred_network_mode_cdma_lte_evdo_choice</item>
         <item>@string/preferred_network_mode_cdma_evdo_gsm_wcdma_choice</item>
         <item>@string/preferred_network_mode_evdo_only_choice</item>
         <item>@string/preferred_network_mode_cdma_wo_evdo_choice</item>
@@ -30,7 +30,8 @@
         <item>@string/preferred_network_mode_gsm_only_choice</item>
         <item>@string/preferred_network_mode_gsm_wcdma_preferred_choice</item>
     </string-array>
-    <string-array name="preferred_network_mode_values"  translatable="false">
+
+    <string-array name="preferred_network_mode_values_world_mode">
         <item>"12"</item>
         <item>"11"</item>
         <item>"9"</item>

@@ -140,7 +140,7 @@ service thermal-engine /system/vendor/bin/thermal-engine
    group root
 
 service time_daemon /system/bin/time_daemon
-   class main
+   class late_start
    user root
    group root
 
