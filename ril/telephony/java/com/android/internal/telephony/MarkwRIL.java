@@ -40,7 +40,7 @@ public class MarkwRIL extends RIL implements CommandsInterface {
 
     @Override
     protected RILRequest
-    processSolicited(Parcel p, int type) {
+    processSolicited(Parcel p) {
         int serial, error;
         boolean found = false;
 
@@ -436,6 +436,28 @@ public class MarkwRIL extends RIL implements CommandsInterface {
                         ret = responseICC_IOBase64(p);
                         break;
                     case RIL_REQUEST_SHUTDOWN:
+                        ret = responseVoid(p);
+                        break;
+                    // MARKW REQUESTS
+                    case RIL_REQUEST_GET_RADIO_CAPABILITY:
+                        ret = responseVoid(p);
+                        break;
+                    case RIL_REQUEST_SET_RADIO_CAPABILITY:
+                        ret = responseVoid(p);
+                        break;
+                    case RIL_REQUEST_START_LCE:
+                        ret = responseVoid(p);
+                        break;
+                    case RIL_REQUEST_STOP_LCE:
+                        ret = responseVoid(p);
+                        break;
+                    case RIL_REQUEST_PULL_LCEDATA:
+                        ret = responseVoid(p);
+                        break;
+                    case RIL_REQUEST_GET_ACTIVITY_INFO:
+                        ret = responseVoid(p);
+                        break;
+                    case RIL_REQUEST_CAF_SIM_OPEN_CHANNEL_WITH_P2:
                         ret = responseVoid(p);
                         break;
                     default:
