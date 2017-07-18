@@ -467,9 +467,9 @@
          NOTE: This requires additional hardware-specific code. -->
     <bool name="config_uiBlurEnabled">true</bool>
 
-    <!-- Enable doze powersaving -->
+    <!-- Enable doze powersaving 
     <bool name="config_doze_enabled_by_default">true</bool>
-    <bool name="config_dozePulsePickup">true</bool>
+    <bool name="config_dozePulsePickup">true</bool> -->
 
     <!-- The RadioAccessFamilies supported by the device.
          Empty is viewed as "all".  Only used on devices which

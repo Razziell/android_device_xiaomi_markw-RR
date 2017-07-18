@@ -26,25 +26,42 @@
 LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter markw,$(TARGET_DEVICE)),)
+
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
 
-$(shell mkdir -p $(TARGET_OUT_ETC)/firmware; \
-    ln -sf /dev/block/bootdevice/by-name/msadp \
-	    $(TARGET_OUT_ETC)/firmware/msadp)
+LOCAL_MODULE := wifi_symlinks
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := FAKE
+LOCAL_MODULE_SUFFIX := -timestamp
 
-# WiFi symlinks
-$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
-    ln -sf /system/etc/wifi/WCNSS_qcom_cfg.ini \
-	    $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_cfg.ini; \
-    ln -sf /persist/wlan_mac.bin \
-	    $(TARGET_OUT_ETC)/firmware/wlan/prima/wlan_mac.bin; \
-    ln -sf /persist/WCNSS_qcom_wlan_nv.bin \
-            $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin; \
-    ln -sf /persist/WCNSS_wlan_dictionary.dat \
-            $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_wlan_dictionary.dat;)
-# END WiFi symlinks
+include $(BUILD_SYSTEM)/base_rules.mk
+
+$(LOCAL_BUILT_MODULE): ACTUAL_INI_FILE := /data/misc/wifi/WCNSS_qcom_cfg.ini
+$(LOCAL_BUILT_MODULE): WCNSS_INI_SYMLINK := $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
+
+$(LOCAL_BUILT_MODULE): ACTUAL_BIN_FILE := /persist/WCNSS_qcom_wlan_nv.bin
+$(LOCAL_BUILT_MODULE): WCNSS_BIN_SYMLINK := $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+
+$(LOCAL_BUILT_MODULE): ACTUAL_DAT_FILE := /persist/WCNSS_wlan_dictionary.dat
+$(LOCAL_BUILT_MODULE): WCNSS_DAT_SYMLINK := $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_wlan_dictionary.dat
+
+$(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/Android.mk
+$(LOCAL_BUILT_MODULE):
+	$(hide) echo "Making symlinks for wifi"
+	$(hide) mkdir -p $(dir $@)
+	$(hide) mkdir -p $(dir $(WCNSS_INI_SYMLINK))
+	$(hide) rm -rf $@
+	$(hide) rm -rf $(WCNSS_INI_SYMLINK)
+	$(hide) ln -sf $(ACTUAL_INI_FILE) $(WCNSS_INI_SYMLINK)
+	$(hide) rm -rf $(WCNSS_BIN_SYMLINK)
+	$(hide) ln -sf $(ACTUAL_BIN_FILE) $(WCNSS_BIN_SYMLINK)
+	$(hide) rm -rf $(WCNSS_DAT_SYMLINK)
+	$(hide) ln -sf $(ACTUAL_DAT_FILE) $(WCNSS_DAT_SYMLINK)
+	$(hide) touch $@
+
+include $(call all-makefiles-under,$(LOCAL_PATH))
 
 # IMS lib symlink
 IMS_LIBS := libimscamera_jni.so libimsmedia_jni.so
@@ -58,32 +75,6 @@ $(IMS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(IMS_SYMLINKS)
 # END IMS lib symlink
-
-GOODIX_IMAGES := \
-    goodixfp.b00 goodixfp.b01 goodixfp.b02 goodixfp.b03 \
-    goodixfp.b04 goodixfp.b05 goodixfp.b06 goodixfp.mdt
-
-GOODIX_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(GOODIX_IMAGES)))
-$(GOODIX_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "Goodix firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /firmware/image/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(GOODIX_SYMLINKS)
-
-FPC_IMAGES := \
-    fpctzapp.b00 fpctzapp.b01 fpctzapp.b02 fpctzapp.b03 \
-    fpctzapp.b04 fpctzapp.b05 fpctzapp.b06 fpctzapp.mdt
-
-FPC_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(FPC_IMAGES)))
-$(FPC_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "Fpc firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /firmware/image/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(FPC_SYMLINKS)
 
 # RFS folder structure
 $(shell rm -rf $(TARGET_OUT)/rfs/)
