@@ -220,7 +220,7 @@ on boot
 
     # Goodix Fingerprint
     chown system system /dev/goodix_fp
-    chmod 0644 /dev/goodix_fp      
+    chmod 0644 /dev/goodix_fp
     chmod 0777 /system/bin/gx_fpd    
 
     setprop persist.sys.fp.vendor none
@@ -297,7 +297,7 @@ on post-fs-data
     mkdir /data/fpc 0770 system system
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod /persist again so because mount is run as root + defaults
-    chown root system /persist
+    chown system system /persist
     chmod 0771 /persist
     chown system system /persist/WCNSS_qcom_wlan_nv.bin
     chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
@@ -398,12 +398,18 @@ on post-fs-data
     mkdir /data/system/swap 0770 root system
     chmod 2770 /data/system/swap
 
+    # Copy qcril.db if needed for RIL
+    copy /system/vendor/qcril.db /data/misc/radio/qcril.db
+    chown radio radio /data/misc/radio/qcril.db
+    write /data/misc/radio/db_check_done 1	
+	
     # Sensors
     chmod 0775 /persist/sensors
     chmod 0664 /persist/sensors/sensors_settings
     chown system root /persist/sensors/sensors_settings
     mkdir /data/misc/sensors
     chmod 0775 /data/misc/sensors
+	
     # set aggressive read ahead for dm-0 and dm-1 during boot up
     write /sys/block/dm-0/queue/read_ahead_kb 2048
     write /sys/block/dm-1/queue/read_ahead_kb 2048
@@ -560,7 +566,7 @@ on property:wc_transport.start_hci=false
 service start_hci_filter /system/bin/wcnss_filter
     class late_start
     user bluetooth
-    group bluetooth qcom_diag system wakelock
+    group bluetooth qcom_diag
     disabled
 
 on property:wc_transport.start_root=true
@@ -581,11 +587,18 @@ service config_bt_addr /system/bin/btnvtool -O
     group bluetooth radio
     oneshot
 
-service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
-    class core
-    user root
+service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+    class late_start
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
     oneshot
 
+on property:bluetooth.hciattach=true
+    start hciattach
+
+on property:bluetooth.hciattach=false
+    setprop bluetooth.status off
 service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
     class late_start
     user bluetooth
@@ -781,8 +794,6 @@ on property:wifi.ftmd.load=true
 
 service cnss-daemon /system/bin/cnss-daemon -n -l
     class late_start
-    user system
-    group system inet net_admin wifi
 
 on property:sys.shutdown.requested=*
     stop cnss-daemon
@@ -791,10 +802,6 @@ service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet qcom_diag wifi
-
-on property:crypto.driver.load=1
-     insmod /system/lib/modules/qce.ko
-     insmod /system/lib/modules/qcedev.ko
 
 service drmdiag /system/bin/drmdiagapp
     class late_start
@@ -942,7 +949,6 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     class core
     user root
     group root
-    disabled
 
 service wfdservice /system/bin/wfdservice
     class main
@@ -958,14 +964,6 @@ on property:sys.wfdservice=enable
 
 on property:sys.wfdservice=disable
     stop wfdservice
-
-#service RIDL /system/vendor/bin/RIDLClient.exe
-#    class late_start
-#    oneshot
-#    user system
-#    group system inet log sdcard_r sdcard_rw qcom_diag
-    # removed for security team - misc bluetooth radio gps wifi diag media_rw
-    # limited to 12 groups.  Unused: audio usb net_bt_admin net_bt_stac net_raw net_admin
 
 # service for USERDEBUG
 service LKCore-dbg /system/vendor/bin/LKCore
