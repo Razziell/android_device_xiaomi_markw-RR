@@ -136,33 +136,25 @@ ro.qualcomm.cabl=0
 
 # Radio
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
-rild.libargs=-d /dev/smd0
-ril.subscription.types=NV,RUIM
+#rild.libargs=-d /dev/smd0
 DEVICE_PROVISIONED=1
+ril.subscription.types=NV,RUIM
 ro.telephony.default_network=9,9
+ro.telephony.default_cdma_sub=0
 ro.telephony.call_ring.multiple=false
-persist.radio.multisim.config=dsds
-persist.radio.sib16_support=1
-persist.radio.custom_ecc=1
-persist.radio.calls.on.ims=0
-persist.radio.jbims=0
-persist.radio.csvt.enabled=false
-persist.radio.rat_on=combine
-persist.radio.mt_sms_ack=20
+persist.data.qmi.adb_logmask=0
+persist.dbg.volte_avail_ovr=1
+persist.dbg.vt_avail_ovr=1
 persist.radio.apm_sim_not_pwdn=1
-persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=1
-persist.dbg.ims_volte_enable=1
-persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=1
-persist.radio.videopause.mode=1
-persist.data.iwlan.enable=true
-persist.dbg.wfc_avail_ovr=0
-persist.radio.sw_mbn_update=0
-persist.radio.hw_mbn_update=0
-service.qti.ims.enabled=1
+persist.radio.force_on_dc=true
+persist.radio.rat_on=combine
+persist.radio.multisim.config=dsds
+persist.radio.custom_ecc=1
+persist.radio.sib16_support=1
+persist.radio.NO_STAPA=1
+persist.radio.VT_HYBRID_ENABLE=1
 telephony.lteOnCdmaDevice=1
-# ro.telephony.ril_class=MarkwRIL
+ro.ct.device.model=XMP-2016060
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
@@ -187,6 +179,3 @@ ro.sys.fw.empty_app_percent=50
 ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=3221225472
-
-# WIFI
-wifi.interface=wlan0

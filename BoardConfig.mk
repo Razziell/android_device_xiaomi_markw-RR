@@ -53,7 +53,6 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-# BOARD_KERNEL_CMDLINE := androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78af000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78af000 
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 2048
@@ -240,7 +239,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # RIL
 # BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
-BOARD_PROVIDES_LIBRIL := true
+# BOARD_PROVIDES_LIBRIL := true
 TARGET_RIL_VARIANT := caf
 
 # Recovery
@@ -257,24 +256,14 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
 # Wi-Fi
-#BOARD_HAS_QCOM_WLAN := true
-#BOARD_HAS_QCOM_WLAN_SDK := true
-#BOARD_WLAN_DEVICE := qcwcn
-#BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-#BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-#BOARD_HOSTAPD_DRIVER := NL80211
-#BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-#TARGET_USES_QCOM_WCNSS_QMI  := true
-#WIFI_DRIVER_FW_PATH_AP := "ap"
-#WIFI_DRIVER_FW_PATH_STA := "sta"
-#WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
-BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+TARGET_USES_QCOM_WCNSS_QMI  := true
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
