@@ -9,7 +9,7 @@
 ro.sys.fw.dex2oat_thread_count=4
 
 # Audio
-af.fast_track_multiplier=1
+af.fast_track_multiplier=2
 audio.deep_buffer.media=true
 audio.dolby.ds2.enabled=true\
 audio.dolby.ds2.hardbypass=true
@@ -21,7 +21,7 @@ audio.safx.pbe.enabled=true
 audio_hal.period_size=192
 flac.sw.decoder.24bit.support=true
 persist.audio.dirac.speaker=true
-persist.audio.fluence.speaker=true
+persist.audio.fluence.speaker=false
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.speaker.prot.enable=false
@@ -62,8 +62,8 @@ vidc.enc.dcvs.extra-buff-count=2
 vidc.enc.disable_bframes=1
 vidc.disable.split.mode=1
 vidc.enc.disable.pq=true
-media.stagefright.legacyencoder=true
-media.stagefright.less-secure=true
+#media.stagefright.legacyencoder=true
+#media.stagefright.less-secure=true
 
 # CNE
 persist.cne.feature=1
@@ -81,7 +81,6 @@ debug.sf.hw=1
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 persist.hwc.mdpcomp.enable=true
-#ro.build.display.wtid=SW_S88553AA1_V066_M21_MP_XM
 ro.opengles.version=196610
 ro.sf.lcd_density=440
 
@@ -104,7 +103,6 @@ av.debug.disable.pers.cache=1
 media.aac_51_output_enabled=true
 media.msm8956hw=0
 media.stagefright.audio.sink=280
-# media.stagefright.legacyencoder=true
 
 mm.enable.qcom_parser=1048575
 mm.enable.smoothstreaming=true
