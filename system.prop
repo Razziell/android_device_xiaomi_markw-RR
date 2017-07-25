@@ -2,9 +2,6 @@
 # system.prop for markw
 #
 
-# Temporary workaround for camera
-#persist.camera.HAL3.enabled=0
-
 # Art
 ro.sys.fw.dex2oat_thread_count=4
 
@@ -54,7 +51,7 @@ bluetooth.hfp.client=1
 qcom.bluetooth.soc=smd
 
 # Camera
-camera.hal1.packagelist=com.skype.raider,com.google.android.talk
+camera.hal1.packagelist=com.skype.raider,com.google.android.talk,org.cyanogenmod.snap
 media.camera.ts.monotonic=0
 vidc.dec.downscalar_height=1088
 vidc.dec.downscalar_width=1920
