@@ -97,6 +97,8 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libqcompostprocbundle \
+    libaudiopolicymanager \
+    libtinyalsa \
     libtinycompress \
     tinymix
 
@@ -203,7 +205,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
      fingerprint.msm8953 \
      fingerprintd
-    
 
 # Fs_config
 PRODUCT_PACKAGES += \
@@ -323,6 +324,7 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
+    libwifi-hal-qcom \
     wpa_supplicant \
     wpa_supplicant.conf
 
