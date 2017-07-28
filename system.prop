@@ -175,10 +175,3 @@ ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=3221225472
 
-# From Mi Max2
-#support night mode 2.0
-ro.eyecare.brightness.threshold=9
-ro.eyecare.brightness.level=2
-# Display feature support
-# bit0-ColorPrefer bit1-EyeCare bit2-AD bit3-CE bit4-CABC bit5-SRGB
-ro.sys.display.support=63
