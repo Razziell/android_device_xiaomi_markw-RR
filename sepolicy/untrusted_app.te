@@ -2,8 +2,6 @@ allow untrusted_app battery_service:service_manager find;
 allow untrusted_app zygote:file { read open };
 allow untrusted_app zygote:dir { search getattr };
 allow untrusted_app device:dir { search read open };
-allow untrusted_app anr_data_file:dir { read open };
-allow untrusted_app anr_data_file:file { read getattr };
 allow untrusted_app tombstone_data_file:dir getattr;
 allow untrusted_app block_device:dir { read open };
 allow untrusted_app init:dir getattr;
