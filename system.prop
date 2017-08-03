@@ -176,3 +176,6 @@ ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=2147483648
 
+# WIFI
+wifi.interface=wlan0
+
