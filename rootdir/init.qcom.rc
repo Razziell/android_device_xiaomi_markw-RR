@@ -861,14 +861,6 @@ service wifi_ftmd /system/bin/wifi_ftmd
 
 on property:wifi.ftmd.load=true
 
-service cnss-daemon /system/bin/cnss-daemon -n -l
-    class late_start
-#    user system
-#    group system inet net_admin wifi
-
-on property:sys.shutdown.requested=*
-    stop cnss-daemon
-
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
     disabled
