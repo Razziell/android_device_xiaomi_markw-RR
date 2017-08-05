@@ -360,10 +360,6 @@ on post-fs-data
     rm /data/system/perfd/default_values
     start perfd
 
-    # NFC local data and nfcee xml storage
-    mkdir /data/nfc 0770 nfc nfc
-    mkdir /data/nfc/param 0770 nfc nfc
-
     #Create IOP  deamon related dirs
     mkdir /data/misc/iop 0770 root system
 
@@ -657,13 +653,6 @@ service qmiproxy /system/bin/qmiproxy
     class main
     user radio
     group radio qcom_diag
-    disabled
-
-# QMUX must be in multiple groups to support external process connections
-service qmuxd /system/bin/qmuxd
-    class main
-    user root
-    group radio audio bluetooth gps nfc qcom_diag
     disabled
 
 service netmgrd /system/bin/netmgrd
