@@ -51,7 +51,6 @@
     <config_params>
         <param key="spkr_1_tz_name" value="wsa881x.0f"/>
         <param key="spkr_2_tz_name" value=""/>
-		<param key="perf_lock_opts" value="2, 0x101, 0x20F"/>
     </config_params>
     <acdb_ids>
         <device name="SND_DEVICE_IN_HANDSET_MIC" acdb_id="1"/>
