@@ -89,7 +89,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
-    audio.primary.msm8953 \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
@@ -171,15 +170,6 @@ PRODUCT_PACKAGES += \
 # Display Livedisplay
 PRODUCT_PACKAGES += \
     libjni_livedisplay
-
-# DPM
-PRODUCT_BOOT_JARS += \
-    com.qti.dpmframework \
-    dpmapi
-
-# DRM
-PRODUCT_PACKAGES += \
-    libprotobuf-cpp-lite
 
 # Ebtables
 PRODUCT_PACKAGES += \
@@ -275,11 +265,6 @@ PRODUCT_PACKAGES += \
 
 # QMI
 PRODUCT_PACKAGES += \
-    dsi_config.xml \
-    netmgr_config.xml \
-    qmi_config.xml
-
-PRODUCT_PACKAGES += \
     libjson
 
 # RIL
@@ -326,6 +311,3 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/fstman.ini:system/etc/wifi/fstman.ini \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
 
-# default.prop
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
