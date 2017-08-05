@@ -84,6 +84,14 @@ on enable-low-power
     write /sys/block/dm-0/queue/read_ahead_kb 256
     write /sys/block/dm-1/queue/read_ahead_kb 256
 
+    # Set perfd properties
+    setprop sys.post_boot.parsed 1
+
+    # Starting io prefetcher service
+    start iop
+
+    start gamed
+
 on class_start:late_start
     trigger enable-low-power
 
