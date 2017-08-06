@@ -276,11 +276,6 @@ PRODUCT_PACKAGES += \
 
 # QMI
 PRODUCT_PACKAGES += \
-    dsi_config.xml \
-    netmgr_config.xml \
-    qmi_config.xml
-
-PRODUCT_PACKAGES += \
     libjson
 
 # RIL
