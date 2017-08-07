@@ -677,12 +677,12 @@ service ipacm /system/bin/ipacm
     class main
     user net_admin
     group net_admin inet
-    disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service qti /system/vendor/bin/qti
     class main
     user radio
-    group radio qcom_diag usb
+    group radio net_raw qcom_diag usb net_admin
     writepid /dev/cpuset/system-background/tasks
 
 service sensors /system/bin/sensors.qcom
