@@ -131,27 +131,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libdashplayer
 
-# Device init scripts
-PRODUCT_PACKAGES += \
-    fstab.qcom \
-    init.qcom.rc \
-    init.qcom.bt.sh \
-    init.qcom.usb.rc \
-    init.target.rc \
-    ueventd.qcom.rc \
-    init.qcom.sh \
-    init.class_main.sh \
-    init.mdm.sh \
-    init.msm.usb.configfs.rc \
-    init.qcom.class_core.sh \
-    init.qcom.early_boot.sh \
-    init.qcom.sensors.sh \
-    init.qcom.syspart_fixup.sh \
-    init.qcom.power.rc \
-    init.qcom.usb.sh \
-    init.qcom.early_boot.sh \
-    init.qcom.factory.rc
-
 # CNE
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
@@ -280,6 +259,21 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libjson
 
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.qcom.rc \
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    init.qcom.power.rc \
+    init.target.rc \
+    ueventd.qcom.rc
+
+PRODUCT_PACKAGES += \
+    init.qcom.bt.sh \
+    init.qcom.post_boot.sh
+
 # RIL
 PRODUCT_PACKAGES += \
     libcnefeatureconfig \
@@ -310,9 +304,9 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
-    libwifi-hal-qcom \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant.conf \
+    wcnss_service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/hostapd.accept:system/etc/hostapd/hostapd.accept \
