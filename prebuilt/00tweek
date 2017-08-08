@@ -1,7 +1,0 @@
-#!/system/bin/sh
-
-chmod 777 /proc/sys/vm/swappiness
-chmod 777 /proc/sys/kernel/random/write_wakeup_threshold
-echo "10" > /proc/sys/vm/swappiness
-echo "4000" > /proc/sys/kernel/random/write_wakeup_threshold
-sysctl -w net.ipv4.tcp_congestion_control=westwood
