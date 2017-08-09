@@ -1,4 +1,4 @@
-# ADSP  from oxygen (MiMax 2)
+# ADSP - from oxygen (MiMax 2)
 bin/adsprpcd
 vendor/lib/libadsp_default_listener.so
 vendor/lib/libadsprpc.so
@@ -9,7 +9,7 @@ vendor/lib64/libadsprpc.so
 vendor/lib64/libfastcvadsp_stub.so
 vendor/lib64/libfastcvopt.so
 
-# ADSP modules  from oxygen (MiMax 2)
+# ADSP modules - from oxygen (MiMax 2)
 vendor/lib/rfsa/adsp/libFastRPC_AUE_Forward_skel.so
 vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_skel.so
 vendor/lib/rfsa/adsp/libapps_mem_heap.so
@@ -23,14 +23,14 @@ vendor/lib/rfsa/adsp/libscveObjectSegmentation_skel.so
 vendor/lib/rfsa/adsp/libscveT2T_skel.so
 vendor/lib/rfsa/adsp/libscveTextReco_skel.so
 
-# Bluetooth  from oxygen (MiMax 2)
+# Bluetooth - from oxygen (MiMax 2)
 bin/btnvtool
 bin/hci_qcomm_init
 bin/wcnss_filter
 vendor/lib/libbtnv.so
 vendor/lib64/libbtnv.so
 
-# Bluetooth firmware  from oxygen (MiMax 2)
+# Bluetooth firmware - from oxygen (MiMax 2)
 etc/firmware/nvm_tlv.bin
 etc/firmware/nvm_tlv_1.3.bin
 etc/firmware/nvm_tlv_2.1.bin
@@ -42,8 +42,8 @@ etc/firmware/rampatch_tlv_2.1.tlv
 etc/firmware/rampatch_tlv_3.0.tlv
 etc/firmware/rampatch_tlv_3.2.tlv
 
-# CNE  from oxygen (MiMax 2)
-privapp/CNEService/CNEService.apk
+# CNE - from oxygen (MiMax 2)
+priv-app/CNEService/CNEService.apk
 bin/cnd
 etc/cne/SwimConfig.xml
 etc/cne/andsfCne.xml
@@ -81,10 +81,10 @@ vendor/lib64/libvendorconn.so
 vendor/lib64/libwqe.so
 vendor/lib64/libxml.so
 
-# Charger  from oxygen (MiMax 2)
+# Charger - from oxygen (MiMax 2)
 bin/hvdcp_opti
 
-# DPM  from oxygen (MiMax 2)
+# DPM - from oxygen (MiMax 2)
 bin/dpmd
 etc/dpm/dpm.conf
 etc/dpm/nsrm/NsrmConfiguration.xml
@@ -104,12 +104,12 @@ vendor/lib64/libdpmframework.so
 vendor/lib64/libdpmnsrm.so
 vendor/lib64/libdpmtcm.so
 
-# DRM  from oxygen (MiMax 2)
+# DRM - from oxygen (MiMax 2)
 bin/qseecomd
 vendor/bin/qseeproxydaemon
 vendor/lib/libQSEEComAPI.so
 vendor/lib/libcppf.so
-vendor/lib64/libsecdisp.so
+vendor/lib64/lib-sec-disp.so
 vendor/lib64/libGPTEE.so
 vendor/lib64/libGPreqcancel.so
 vendor/lib64/libGPreqcancel_svc.so
@@ -126,17 +126,17 @@ vendor/lib64/libsecureuisvc_jni.so
 vendor/lib64/libssd.so
 vendor/lib64/libtzdrmgenprov.so
 
-# Gatekeeper  from oxygen (MiMax 2)
+# Gatekeeper - from oxygen (MiMax 2)
 vendor/lib/hw/gatekeeper.msm8953.so
 vendor/lib64/hw/gatekeeper.msm8953.so
 
-# GPS  from oxygen (MiMax 2)
+# GPS - from oxygen (MiMax 2)
 framework/com.qti.location.sdk.jar
-privapp/com.qualcomm.location/com.qualcomm.location.apk
+priv-app/com.qualcomm.location/com.qualcomm.location.apk
 bin/loc_launcher
-bin/lowiserver
-bin/xtwificlient
-bin/xtwifiinetagent
+bin/lowi-server
+bin/xtwifi-client
+bin/xtwifi-inet-agent
 etc/cacert_location.pem
 etc/permissions/com.qti.location.sdk.xml
 etc/permissions/com.qualcomm.location.vzw_library.xml
@@ -195,8 +195,8 @@ vendor/lib64/libxt_native.so
 vendor/lib64/libxtadapter.so
 vendor/lib64/libxtwifi_ulp_adaptor.so
 
-# Graphics  from oxygen (MiMax 2)
-vendor/lib/libsdmdispapis.so
+# Graphics - from oxygen (MiMax 2)
+-vendor/lib/libsdm-disp-apis.so
 vendor/lib/egl/eglSubDriverAndroid.so
 vendor/lib/egl/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
@@ -211,14 +211,14 @@ vendor/lib/libOpenCL.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libbccQTI.so
-vendor/lib/libc2d30a5xx.so
+vendor/lib/libc2d30-a5xx.so
 vendor/lib/libc2d30_bltlib.so
 vendor/lib/libgsl.so
-vendor/lib/libllvmglnext.so
-vendor/lib/libllvmqcom.so
-vendor/lib/libllvmqgl.so
-vendor/lib/libmmdispapis.so
-vendor/lib/libmmqdcm.so
+vendor/lib/libllvm-glnext.so
+vendor/lib/libllvm-qcom.so
+vendor/lib/libllvm-qgl.so
+vendor/lib/libmm-disp-apis.so
+vendor/lib/libmm-qdcm.so
 vendor/lib/libmmQSM.so
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
@@ -232,54 +232,55 @@ vendor/lib64/egl/libQTapGLES.so
 vendor/lib64/egl/libq3dtools_adreno.so
 vendor/lib64/egl/libq3dtools_esx.so
 vendor/lib64/hw/vulkan.msm8953.so
-vendor/lib64/libsdmdispapis.so
+vendor/lib64/libsdm-disp-apis.so
 vendor/lib64/libC2D2.so
 vendor/lib64/libCB.so
 vendor/lib64/libOpenCL.so
 vendor/lib64/libRSDriver_adreno.so
 vendor/lib64/libadreno_utils.so
 vendor/lib64/libbccQTI.so
-vendor/lib64/libc2d30a5xx.so
+vendor/lib64/libc2d30-a5xx.so
 vendor/lib64/libc2d30_bltlib.so
 vendor/lib64/libgsl.so
-vendor/lib64/libllvmglnext.so
-vendor/lib64/libllvmqcom.so
-vendor/lib64/libllvmqgl.so
-vendor/lib64/libmmdispapis.so
-vendor/lib64/libmmhdcpmgr.so
-vendor/lib64/libmmqdcm.so
+vendor/lib64/libllvm-glnext.so
+vendor/lib64/libllvm-qcom.so
+vendor/lib64/libllvm-qgl.so
+vendor/lib64/libmm-disp-apis.so
+vendor/lib64/libmm-hdcpmgr.so
+vendor/lib64/libmm-qdcm.so
 vendor/lib64/libmmQSM.so
 vendor/lib64/librs_adreno.so
 vendor/lib64/librs_adreno_sha1.so
 vendor/lib64/libscalar.so
 vendor/lib64/libscale.so
 vendor/lib64/libsd_sdk_display.so
-vendor/lib64/libsdmcolor.so
-vendor/lib64/libsdmdiag.so
+vendor/lib64/libsdm-color.so
+vendor/lib64/libsdm-diag.so
 vendor/lib64/libsdmextension.so
 vendor/lib64/libuiblur.so
 
-# Graphics firmware  from oxygen (MiMax 2)
+# Graphics firmware - from oxygen (MiMax 2)
 etc/firmware/a506_zap.b00
 etc/firmware/a506_zap.b01
 etc/firmware/a506_zap.b02
 etc/firmware/a506_zap.mdt
+etc/firmware/a506_zap.elf
 etc/firmware/a530_pfp.fw
 etc/firmware/a530_pm4.fw
 
-# Ipacm  from oxygen (MiMax 2)
-bin/ipacmdiag
+# Ipacm - from oxygen (MiMax 2)
+bin/ipacm-diag
 
-# Keystore  from oxygen (MiMax 2)
+# Keystore - from oxygen (MiMax 2)
 vendor/lib/hw/keystore.msm8953.so
 vendor/lib64/hw/keystore.msm8953.so
 
-# Listen  from oxygen (MiMax 2)
+# Listen - from oxygen (MiMax 2)
 vendor/lib/hw/sound_trigger.primary.msm8953.so
 vendor/lib/libadpcmdec.so
 vendor/lib/libsmwrapper.so
 
-# Media  from oxygen (MiMax 2)
+# Media - from oxygen (MiMax 2)
 lib/libOmxVpp.so
 lib/libstagefright_soft_flacdec.so
 lib/libvpplibrary.so
@@ -298,7 +299,7 @@ vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxMux.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxWmaDec.so
-vendor/lib/libmmcolorconvertor.so
+vendor/lib/libmm-color-convertor.so
 vendor/lib/libmmosal.so
 vendor/lib/libmmsw_detail_enhancement.so
 vendor/lib/libmmsw_math.so
@@ -309,43 +310,45 @@ vendor/lib64/libI420colorconvert.so
 vendor/lib64/libOmxAacDec.so
 vendor/lib64/libOmxEvrcDec.so
 vendor/lib64/libOmxQcelp13Dec.so
-vendor/lib64/libmmcolorconvertor.so
+vendor/lib64/libmm-color-convertor.so
 vendor/lib64/libmmosal.so
 
-# Modem  from oxygen (MiMax 2)
+# Modem - from oxygen (MiMax 2)
 vendor/lib/libwms.so
 vendor/lib64/libwms.so
 
-# Network  from oxygen (MiMax 2)
-privapp/QtiTetherService/QtiTetherService.apk
+# Network - from oxygen (MiMax 2)
+priv-app/QtiTetherService/QtiTetherService.apk
 vendor/lib/libconnctrl.so
 vendor/lib/libQtiTether.so
 vendor/lib64/libconnctrl.so
 vendor/lib64/libQtiTether.so
 
-# Perf  from oxygen (MiMax 2)
-bin/energyawareness
+# Perf - from oxygen (MiMax 2)
+bin/energy-awareness
 bin/iop
 bin/msm_irqbalance
 vendor/bin/perfd
-vendor/lib/libqtiiopclient.so
-vendor/lib/libqtiperfdclient.so
-vendor/lib64/libqtiiopclient.so
-vendor/lib64/libqtiperfdclient.so
+vendor/lib/libqti-iop.so
+vendor/lib/libqti-iop-client.so
+vendor/lib/libqti-perfd-client.so
+vendor/lib64/libqti-iop.so
+vendor/lib64/libqti-iop-client.so
+vendor/lib64/libqti-perfd-client.so
 
-# Peripheral manager  from oxygen (MiMax 2)
-bin/pmproxy
-bin/pmservice
+# Peripheral manager - from oxygen (MiMax 2)
+bin/pm-proxy
+bin/pm-service
 vendor/lib/libperipheral_client.so
 vendor/lib64/libperipheral_client.so
 
-# Postprocessing  from oxygen (MiMax 2)
+# Postprocessing - from oxygen (MiMax 2)
 framework/com.qti.snapdragon.sdk.display.jar
-vendor/bin/mmppdpps
-vendor/lib/libdispaba.so
-vendor/lib64/libdispaba.so
+vendor/bin/mm-pp-dpps
+vendor/lib/libdisp-aba.so
+vendor/lib64/libdisp-aba.so
 
-# QMI  from oxygen (MiMax 2)
+# QMI - from oxygen (MiMax 2)
 bin/irsc_util
 etc/permissions/qti_permissions.xml
 vendor/lib/libdiag.so
@@ -364,7 +367,7 @@ vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
-vendor/lib/libqtiwl.so
+vendor/lib/libqti-wl.so
 vendor/lib/libquipc_os_api.so
 vendor/lib/libsmemlog.so
 vendor/lib64/libdiag.so
@@ -383,18 +386,18 @@ vendor/lib64/libqmi_common_so.so
 vendor/lib64/libqmi_csi.so
 vendor/lib64/libqmi_encdec.so
 vendor/lib64/libqmiservices.so
-vendor/lib64/libqtiwl.so
+vendor/lib64/libqti-wl.so
 vendor/lib64/libquipc_os_api.so
 vendor/lib64/libsmemlog.so
 
-# Radio  from oxygen (MiMax 2)
+# Radio - from oxygen (MiMax 2)
 app/QtiTelephonyService/QtiTelephonyService.apk
 app/datastatusnotification/datastatusnotification.apk
 app/embms/embms.apk
 app/fastdormancy/fastdormancy.apk
 app/shutdownlistener/shutdownlistener.apk
 bin/netmgrd
-bin/portbridge
+bin/port-bridge
 bin/radish
 bin/rmt_storage
 bin/tftp_server
@@ -406,8 +409,8 @@ etc/permissions/telephonyservice.xml
 framework/QtiTelephonyServicelibrary.jar
 framework/embmslibrary.jar
 framework/qcrilhook.jar
-framework/qtitelephonycommon.jar
-privapp/qcrilmsgtunnel/qcrilmsgtunnel.apk
+framework/qti-telephony-common.jar
+priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/qti
 vendor/lib/liblqe.so
 vendor/lib/libmdmdetect.so
@@ -415,16 +418,16 @@ vendor/lib64/libconfigdb.so
 vendor/lib64/liblqe.so
 vendor/lib64/libmdmdetect.so
 vendor/lib64/libnetmgr.so
-vendor/lib64/librilqcltedirectdisc.so
-vendor/lib64/librilqcqmi1.so
-vendor/lib64/librilqcradioconfig.so
-vendor/lib64/librilqcrilhookoem.so
+vendor/lib64/libril-qc-ltedirectdisc.so
+vendor/lib64/libril-qc-qmi-1.so
+vendor/lib64/libril-qc-radioconfig.so
+vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/librilqmiservices.so
 vendor/lib64/libsettings.so
 vendor/lib64/libsystem_health_mon.so
 vendor/qcril.db
 
-# Radio  IMS  from oxygen (MiMax 2)
+# Radio - IMS - from oxygen (MiMax 2)
 bin/ims_rtp_daemon
 bin/imscmservice
 bin/imsdatadaemon
@@ -434,31 +437,31 @@ framework/imscmlibrary.jar
 framework/rcsimssettings.jar
 vendor/app/ims/ims.apk
 vendor/app/imssettings/imssettings.apk
-vendor/lib64/libdplmedia.so
-vendor/lib64/libimsrcscmjni.so
-vendor/lib64/libimsSDP.so
-vendor/lib64/libimscamera.so
-vendor/lib64/libimsdpl.so
-vendor/lib64/libimsqimf.so
-vendor/lib64/libimsrcs.so
-vendor/lib64/libimsrcscm.so
-vendor/lib64/libimsrcscmclient.so
-vendor/lib64/libimsrcscmservice.so
-vendor/lib64/libimss.so
-vendor/lib64/libimsvt.so
-vendor/lib64/libimsxml.so
-vendor/lib64/librcsimssjni.so
-vendor/lib64/librcsjni.so
-vendor/lib64/librtpcommon.so
-vendor/lib64/librtpcore.so
-vendor/lib64/librtpdaemoninterface.so
-vendor/lib64/librtpsl.so
+vendor/lib64/lib-dplmedia.so
+vendor/lib64/lib-ims-rcscmjni.so
+vendor/lib64/lib-imsSDP.so
+vendor/lib64/lib-imscamera.so
+vendor/lib64/lib-imsdpl.so
+vendor/lib64/lib-imsqimf.so
+vendor/lib64/lib-imsrcs.so
+vendor/lib64/lib-imsrcscm.so
+vendor/lib64/lib-imsrcscmclient.so
+vendor/lib64/lib-imsrcscmservice.so
+vendor/lib64/lib-imss.so
+vendor/lib64/lib-imsvt.so
+vendor/lib64/lib-imsxml.so
+vendor/lib64/lib-rcsimssjni.so
+vendor/lib64/lib-rcsjni.so
+vendor/lib64/lib-rtpcommon.so
+vendor/lib64/lib-rtpcore.so
+vendor/lib64/lib-rtpdaemoninterface.so
+vendor/lib64/lib-rtpsl.so
 vendor/lib64/libimscamera_jni.so
 vendor/lib64/libimsmedia_jni.so
 vendor/lib64/librcc.so
-vendor/lib64/libvoicesvc.so
+vendor/lib64/libvoice-svc.so
 
-# Sensors  from oxygen (MiMax 2)
+# Sensors - from oxygen (MiMax 2)
 bin/sensors.qcom
 vendor/lib/hw/activity_recognition.msm8953.so
 vendor/lib/libsensor1.so
@@ -471,13 +474,13 @@ vendor/lib64/libsensor_reg.so
 vendor/lib64/sensor_calibrate.so
 vendor/lib64/sensors.ssc.so
 
-# Thermal  from oxygen (MiMax 2)
-vendor/bin/thermalengine
+# Thermal - from oxygen (MiMax 2)
+vendor/bin/thermal-engine
 vendor/lib/libthermalclient.so
 vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
 
-# Time services  from oxygen (MiMax 2)
+# Time services - from oxygen (MiMax 2)
 app/TimeService/TimeService.apk
 bin/time_daemon
 vendor/lib/libtime_genoff.so
@@ -485,10 +488,10 @@ vendor/lib/libTimeService.so
 vendor/lib64/libtime_genoff.so
 vendor/lib64/libTimeService.so
 
-# Widevine  from onePlus3
+# Widevine - from onePlus3
 vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/libwvdrm_L3.so
 vendor/lib/mediadrm/libwvdrmengine.so
 
-# WiFi  from oxygen (MiMax 2)
+# Wi-Fi - from oxygen (MiMax 2)
 bin/wcnss_service
