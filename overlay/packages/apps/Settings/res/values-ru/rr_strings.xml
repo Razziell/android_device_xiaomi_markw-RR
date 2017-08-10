@@ -11,6 +11,9 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- ANBI -->
+    <string name="anbi_title">Предотвращение случайных касаний</string>
+    <string name="anbi_summary">Запретить взаимодействие с навигационными кнопками во время касания экрана</string>
     <string name="rr_keys_title">Разное</string>
     <!-- Pocket judge -->
     <string name="pocket_judge_title">Режим \"в кармане\"</string>
