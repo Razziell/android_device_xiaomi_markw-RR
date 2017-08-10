@@ -13,15 +13,15 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="rr_keys_title">Разное</string>
     <!-- Pocket judge -->
-    <string name="pocket_judge_title">Pocket detection</string>
-    <string name="pocket_judge_summary">Block screen and button inputs when device is in pocket</string>
+    <string name="pocket_judge_title">Режим \"в кармане\"</string>
+    <string name="pocket_judge_summary">Блокировать экран и кнопки, когда устройство находится в кармане</string>
 
     <!-- Sensor block per-package -->
-    <string name="sensor_block_title">Sensor block per-package</string>
-    <string name="sensor_block_summary">Block access to certain sensors for some apps to save battery.</string>
+    <string name="sensor_block_title">Блокирование датчиков для приложений</string>
+    <string name="sensor_block_summary">Блокировать доступ к некоторым датчикам приложениям для экономии заряда батареи.</string>
 
     <!-- Qs easy tile add -->
-    <string name="single_tap_tile_add_title">Easy tile add</string>
-    <string name="single_tap_tile_add_summary">Add quick tiles easily from qs customizer by simply tapping on them instead of dragging them</string>
+    <string name="single_tap_tile_add_title">Простое добавление плиток</string>
+    <string name="single_tap_tile_add_summary">Добавление плиток нажатием, а не перетаскиванием</string>
 
 </resources>
