@@ -43,7 +43,7 @@ etc/firmware/rampatch_tlv_3.0.tlv
 etc/firmware/rampatch_tlv_3.2.tlv
 
 # CNE - from oxygen (MiMax 2)
-priv-app/CNEService/CNEService.apk
+-priv-app/CNEService/CNEService.apk
 bin/cnd
 etc/cne/SwimConfig.xml
 etc/cne/andsfCne.xml
@@ -65,9 +65,9 @@ etc/cne/wqeclient/VZW/VZW_profile6.xml
 etc/permissions/ConnectivityExt.xml
 etc/permissions/cneapiclient.xml
 etc/permissions/com.quicinc.cne.xml
-framework/ConnectivityExt.jar
-framework/cneapiclient.jar
-framework/com.quicinc.cne.jar
+-framework/ConnectivityExt.jar
+-framework/cneapiclient.jar
+-framework/com.quicinc.cne.jar
 vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneqmiutils.so
@@ -90,9 +90,9 @@ etc/dpm/dpm.conf
 etc/dpm/nsrm/NsrmConfiguration.xml
 etc/permissions/com.qti.dpmframework.xml
 etc/permissions/dpmapi.xml
-framework/com.qti.dpmframework.jar
-framework/dpmapi.jar
-framework/tcmclient.jar
+-framework/com.qti.dpmframework.jar
+-framework/dpmapi.jar
+-framework/tcmclient.jar
 vendor/lib/libdpmctmgr.so
 vendor/lib/libdpmfdmgr.so
 vendor/lib/libdpmframework.so
@@ -131,8 +131,8 @@ vendor/lib/hw/gatekeeper.msm8953.so
 vendor/lib64/hw/gatekeeper.msm8953.so
 
 # GPS - from oxygen (MiMax 2)
-framework/com.qti.location.sdk.jar
-priv-app/com.qualcomm.location/com.qualcomm.location.apk
+-framework/com.qti.location.sdk.jar
+-priv-app/com.qualcomm.location/com.qualcomm.location.apk
 bin/loc_launcher
 bin/lowi-server
 bin/xtwifi-client
@@ -143,8 +143,8 @@ etc/permissions/com.qualcomm.location.vzw_library.xml
 etc/permissions/com.qualcomm.location.xml
 etc/permissions/izat.xt.srv.xml
 etc/xtra_root_cert.pem
-framework/com.qualcomm.location.vzw_library.jar
-framework/izat.xt.srv.jar
+-framework/com.qualcomm.location.vzw_library.jar
+-framework/izat.xt.srv.jar
 lib/libloc_api_v02.so
 lib/libloc_ds_api.so
 lib64/libloc_api_v02.so
@@ -318,7 +318,7 @@ vendor/lib/libwms.so
 vendor/lib64/libwms.so
 
 # Network - from oxygen (MiMax 2)
-priv-app/QtiTetherService/QtiTetherService.apk
+-priv-app/QtiTetherService/QtiTetherService.apk
 vendor/lib/libconnctrl.so
 vendor/lib/libQtiTether.so
 vendor/lib64/libconnctrl.so
@@ -343,7 +343,7 @@ vendor/lib/libperipheral_client.so
 vendor/lib64/libperipheral_client.so
 
 # Postprocessing - from oxygen (MiMax 2)
-framework/com.qti.snapdragon.sdk.display.jar
+-framework/com.qti.snapdragon.sdk.display.jar
 vendor/bin/mm-pp-dpps
 vendor/lib/libdisp-aba.so
 vendor/lib64/libdisp-aba.so
@@ -391,11 +391,11 @@ vendor/lib64/libquipc_os_api.so
 vendor/lib64/libsmemlog.so
 
 # Radio - from oxygen (MiMax 2)
-app/QtiTelephonyService/QtiTelephonyService.apk
-app/datastatusnotification/datastatusnotification.apk
-app/embms/embms.apk
-app/fastdormancy/fastdormancy.apk
-app/shutdownlistener/shutdownlistener.apk
+-app/QtiTelephonyService/QtiTelephonyService.apk
+-app/datastatusnotification/datastatusnotification.apk
+-app/embms/embms.apk
+-app/fastdormancy/fastdormancy.apk
+-app/shutdownlistener/shutdownlistener.apk
 bin/netmgrd
 bin/port-bridge
 bin/radish
@@ -406,11 +406,11 @@ etc/data/netmgr_config.xml
 etc/permissions/embms.xml
 etc/permissions/qcrilhook.xml
 etc/permissions/telephonyservice.xml
-framework/QtiTelephonyServicelibrary.jar
-framework/embmslibrary.jar
-framework/qcrilhook.jar
-framework/qti-telephony-common.jar
-priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+-framework/QtiTelephonyServicelibrary.jar
+-framework/embmslibrary.jar
+-framework/qcrilhook.jar
+-framework/qti-telephony-common.jar
+-priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/qti
 vendor/lib/liblqe.so
 vendor/lib/libmdmdetect.so
@@ -433,10 +433,10 @@ bin/imscmservice
 bin/imsdatadaemon
 bin/imsqmidaemon
 etc/permissions/imscm.xml
-framework/imscmlibrary.jar
-framework/rcsimssettings.jar
-vendor/app/ims/ims.apk
-vendor/app/imssettings/imssettings.apk
+-framework/imscmlibrary.jar
+-framework/rcsimssettings.jar
+-vendor/app/ims/ims.apk
+-vendor/app/imssettings/imssettings.apk
 vendor/lib64/lib-dplmedia.so
 vendor/lib64/lib-ims-rcscmjni.so
 vendor/lib64/lib-imsSDP.so
@@ -481,11 +481,11 @@ vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
 
 # Time services - from oxygen (MiMax 2)
-app/TimeService/TimeService.apk
+-app/TimeService/TimeService.apk
 bin/time_daemon
-vendor/lib/libtime_genoff.so
+-vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
-vendor/lib64/libtime_genoff.so
+-vendor/lib64/libtime_genoff.so
 vendor/lib64/libTimeService.so
 
 # Widevine - from onePlus3
