@@ -384,6 +384,7 @@ private:
     QCameraExif *getExifData();
     cam_sensor_t getSensorType();
     bool isLowPowerMode();
+    nsecs_t getBootToMonoTimeOffset();
 
     int32_t processAutoFocusEvent(cam_auto_focus_data_t &focus_data);
     int32_t processZoomEvent(cam_crop_data_t &crop_info);
@@ -626,7 +627,6 @@ private:
     pthread_t mLiveSnapshotThread;
     pthread_t mIntPicThread;
     bool mFlashNeeded;
-    bool mFlashConfigured;
     uint32_t mDeviceRotation;
     uint32_t mCaptureRotation;
     uint32_t mJpegExifRotation;

@@ -1645,7 +1645,6 @@ QCameraGrallocMemory::QCameraGrallocMemory(camera_request_memory memory)
         mBufferHandle[i] = NULL;
         mLocalFlag[i] = BUFFER_NOT_OWNED;
         mPrivateHandle[i] = NULL;
-        mBufferStatus[i] = STATUS_IDLE;
     }
 }
 
@@ -1981,9 +1980,17 @@ int QCameraGrallocMemory::allocate(uint8_t count, size_t /*size*/,
          goto end;
     }
 
-    err = mWindow->set_buffers_geometry(mWindow, mWidth, mHeight, mFormat);
+    err = mWindow->set_buffers_geometry(mWindow, mStride, mScanline, mFormat);
     if (err != 0) {
          LOGE("set_buffers_geometry failed: %s (%d)",
+                strerror(-err), -err);
+         ret = UNKNOWN_ERROR;
+         goto end;
+    }
+
+    err = mWindow->set_crop(mWindow, 0, 0, mWidth, mHeight);
+    if (err != 0) {
+         LOGE("set_crop failed: %s (%d)",
                 strerror(-err), -err);
          ret = UNKNOWN_ERROR;
          goto end;
@@ -2346,24 +2353,5 @@ uint8_t QCameraGrallocMemory::checkIfAllBuffersMapped() const
     return (mBufferCount == mMappableBuffers);
 }
 
-/*===========================================================================
- * FUNCTION   : setBufferStatus
- *
- * DESCRIPTION: set buffer status
- *
- * PARAMETERS :
- *   @index   : index of the buffer
- *   @status  : status of the buffer, whether skipped,etc
- *
- * RETURN     : none
- *==========================================================================*/
-void QCameraGrallocMemory::setBufferStatus(uint32_t index, BufferStatus status)
-{
-    if (index >= mBufferCount) {
-        LOGE("index out of bound");
-        return;
-    }
-    mBufferStatus[index] = status;
-}
 
 }; //namespace qcamera

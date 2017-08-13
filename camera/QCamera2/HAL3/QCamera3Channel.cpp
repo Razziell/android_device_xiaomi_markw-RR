@@ -3963,9 +3963,10 @@ int32_t QCamera3ReprocessChannel::stop()
     int32_t rc = NO_ERROR;
 
     rc = QCamera3Channel::stop();
-    rc |= m_camOps->stop_channel(m_camHandle, m_handle);
-    // Unmapping the buffers
     unmapOfflineBuffers(true);
+
+    rc |= m_camOps->stop_channel(m_camHandle, m_handle);
+
     return rc;
 }
 
