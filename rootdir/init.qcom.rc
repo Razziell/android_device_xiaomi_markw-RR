@@ -416,6 +416,12 @@ service iop /system/bin/iop
     socket iop seqpacket 0666 root system
     writepid /dev/cpuset/system-background/tasks
 
+#bug156417 zhaoqf_sh add Allow usb charging to be disabled peristently
+on property:persist.sys.chgdisabled=1
+    write /sys/class/power_supply/battery/charging_enabled 0
+on property:persist.sys.chgdisabled=0
+    write /sys/class/power_supply/battery/charging_enabled 1
+
 on property:hw.fm.init=*
     write /sys/module/radio_iris_transport/parameters/fmsmd_set ${hw.fm.init}
 
