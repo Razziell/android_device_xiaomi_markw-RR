@@ -406,7 +406,6 @@ service perfd /system/vendor/bin/perfd
    group root readproc
    disabled
    socket perfd seqpacket 0666 root system
-   writepid /dev/cpuset/system-background/tasks
 
 service iop /system/bin/iop
     class main
@@ -414,7 +413,7 @@ service iop /system/bin/iop
     group root
     disabled
     socket iop seqpacket 0666 root system
-    writepid /dev/cpuset/system-background/tasks
+    oneshot
 
 #bug156417 zhaoqf_sh add Allow usb charging to be disabled peristently
 on property:persist.sys.chgdisabled=1
