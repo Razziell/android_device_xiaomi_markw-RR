@@ -117,7 +117,8 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
-BLUETOOTH_HCI_USE_MCT := true
+#BLUETOOTH_HCI_USE_MCT := true
+QCOM_BT_READ_ADDR_FROM_PROP := true
 
 # Camera
 # Force camera module to be compiled only in 32-bit mode on 64-bit systems
