@@ -181,6 +181,8 @@ case "$target" in
                 echo 3 > /proc/sys/kernel/sched_spill_nr_run
                 # Apply inter-cluster load balancer restrictions
                 echo 1 > /proc/sys/kernel/sched_restrict_cluster_spill
+                # Enabling fp_boost by default
+                echo 1 > /sys/kernel/fp_boost/enabled
 
 
                 for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
