@@ -108,8 +108,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
     $(LOCAL_PATH)/audio/vendor/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    $(LOCAL_PATH)/audio/vendor/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
-    $(LOCAL_PATH)/audio/vendor/diracmobile.config:system/vendor/etc/diracmobile.config
+    $(LOCAL_PATH)/audio/vendor/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf
 
 # XML Audio configuration files
 PRODUCT_COPY_FILES += \
@@ -123,9 +122,10 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8953 \
-    libmm-qcamera \
+    SnapdragonCamera2 \
     Snap
+#    camera.msm8953 \
+#    libmm-qcamera \
 
 # DASH technology
 PRODUCT_PACKAGES += \
@@ -256,7 +256,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/etc/perf-profile1.conf:system/vendor/etc/perf-profile1.conf
 
 PRODUCT_BOOT_JARS += \
-       com.qualcomm.qti
+    com.qualcomm.qti
 
 # Power
 PRODUCT_PACKAGES += \
@@ -300,7 +300,6 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine.conf \
     $(LOCAL_PATH)/configs/thermal-engine-8953.conf:system/etc/thermal-engine-8953.conf
 
 # WiFi
