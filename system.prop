@@ -68,8 +68,8 @@ vidc.enc.dcvs.extra-buff-count=2
 vidc.enc.disable_bframes=1
 vidc.disable.split.mode=1
 vidc.enc.disable.pq=true
-media.stagefright.legacyencoder=true
-media.stagefright.less-secure=true
+#media.stagefright.legacyencoder=true
+#media.stagefright.less-secure=true
 
 # CNE
 persist.cne.feature=1
