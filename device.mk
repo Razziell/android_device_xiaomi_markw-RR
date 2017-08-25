@@ -122,7 +122,8 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap
+    Snap \
+    SnapdragonCamera2
 #    camera.msm8953 \
 #    libmm-qcamera \
 
