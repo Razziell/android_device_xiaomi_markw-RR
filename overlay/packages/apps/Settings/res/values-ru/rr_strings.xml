@@ -11,20 +11,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- ANBI -->
-    <string name="anbi_title">Предотвращение случайных касаний</string>
-    <string name="anbi_summary">Запретить взаимодействие с навигационными кнопками во время касания экрана</string>
-    <string name="rr_keys_title">Разное</string>
-    <!-- Pocket judge -->
-    <string name="pocket_judge_title">Режим \"в кармане\"</string>
-    <string name="pocket_judge_summary">Блокировать экран и кнопки, когда устройство находится в кармане</string>
 
-    <!-- Sensor block per-package -->
-    <string name="sensor_block_title">Блокирование датчиков для приложений</string>
-    <string name="sensor_block_summary">Блокировать доступ к некоторым датчикам приложениям для экономии заряда батареи.</string>
-
-    <!-- Qs easy tile add -->
-    <string name="single_tap_tile_add_title">Простое добавление плиток</string>
-    <string name="single_tap_tile_add_summary">Добавление плиток нажатием, а не перетаскиванием</string>
+  <!-- Pie -->
+  <string name="pa_pie_control_title">PIE-управление</string>
 
 </resources>
