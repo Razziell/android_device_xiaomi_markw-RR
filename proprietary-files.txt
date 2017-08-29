@@ -65,6 +65,11 @@ etc/camera/sunny_s5k3l8_f3l8yam_chromatix.xml
 
 # Camera
 bin/mm-qcamera-daemon
+lib/hw/camera.msm8953.so
+lib/libmmcamera_interface.so
+lib/libmmjpeg_interface.so
+lib/libmm-qcamera.so
+lib/libqomx_core.so
 vendor/lib/libChamomilePA.so
 vendor/lib/libchromaflash.so
 vendor/lib/libflash_pmic.so
