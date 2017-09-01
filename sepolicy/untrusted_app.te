@@ -62,7 +62,6 @@ allow untrusted_app system_server:dir getattr;
 allow untrusted_app fingerprintd:dir getattr;
 allow untrusted_app sdcardd:dir getattr;
 allow untrusted_app platform_app:dir getattr;
-allow untrusted_app themeservice_app:dir getattr;
 allow untrusted_app wpa:dir getattr;
 allow untrusted_app system_app:dir getattr;
 allow untrusted_app dpmservice_app:dir getattr;
