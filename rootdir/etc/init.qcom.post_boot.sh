@@ -355,8 +355,6 @@ case "$target" in
     "msm8937" | "msm8953")
         echo 256 > /sys/block/mmcblk0/bdi/read_ahead_kb
         echo 256 > /sys/block/mmcblk0/queue/read_ahead_kb
-        echo 256 > /sys/block/dm-0/queue/read_ahead_kb
-        echo 256 > /sys/block/dm-1/queue/read_ahead_kb
         setprop sys.post_boot.parsed 1
         start gamed
     ;;
