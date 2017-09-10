@@ -98,7 +98,7 @@ markw.dt2w=1
 persist.qfp=false
 
 # FRP
-ro.frp.pst=/dev/block/bootdevice/by-name/config
+#ro.frp.pst=/dev/block/bootdevice/by-name/config
 
 # GPS
 persist.gps.qc_nlp_in_use=1
